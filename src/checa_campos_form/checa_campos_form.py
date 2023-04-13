@@ -50,7 +50,7 @@ def validar_senha(senha: str) -> bool:
     # [\w]{8}        -> aceita caracteres alfanuméricos, exatamente 8
     # ^...$          -> a cadeia precisa começar e terminar obedecendo essas regras.
     #                   Isso evita o match parcial das 8 primeiras ocorrências.
-    regra = r"^(?=.*[A-Z])(?=.*\d)[\w]{8}$"
+    regra = r"^(?>=.*[A-Z])(?>=.*\d)[\w]{8}$"
     match = re.search(regra,senha)
     return bool(match)
 
