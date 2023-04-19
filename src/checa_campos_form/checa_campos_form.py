@@ -80,17 +80,18 @@ produção.
 
 def validar_telefone(telefone: str) -> bool:
     """Verifica se o número de telefone está dentro das regras de
-produção.
-    
+    produção.
+
     Regras
     - Números de telefone devem ter um dos seguintes formatos:
         - (xx) 9xxxx-xxxx
         - (xx) 9xxxxxxxxxx
+<<<<<<< HEAD
         - 9xxxxxxxx
 onde x é um numeral 
     """
     
-    regra = r"^(\d{2}(?!.*\-.*))|(\(\d{2}\)) 9\d{4}-?\d{4}$"
+    regra = r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
     match = re.search(regra, telefone)
     return bool(match)
 
