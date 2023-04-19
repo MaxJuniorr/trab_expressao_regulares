@@ -56,7 +56,7 @@ def validar_senha(senha: str) -> bool:
     #                   essas regras.
     #                   Isso evita o match parcial das 8 primeiras
     #                   ocorrências.
-    regra = r"^(?>=.*[A-Z])(?>=.*\d)\w{8}$"
+    regra = r"^(?=.*[A-Z])(?=.*\d)\w{8}$"
     match = re.search(regra, senha)
     return bool(match)
 
@@ -80,37 +80,38 @@ produção.
 
 def validar_telefone(telefone: str) -> bool:
     """Verifica se o número de telefone está dentro das regras de
-produção.
-    
+    produção.
+
     Regras
     - Números de telefone devem ter um dos seguintes formatos:
-        - (xx) 9xxxx-xxxx(xx)
-        - 9xxxxxxxxxx
-        - 9xxxxxxxx
-onde x é um numeral 
+        - (xx) 9xxxx-xxxx
+        - (xx) 9xxxxxxxxxx
+        - xx 9xxxxxxxx
+    onde x é um numeral
     """
-    
-    regra = r"^(\(?\d\d(?<=\(\d\d)\)\s)?9\d{4}-?\d{4}$"
+
+    regra = r"^\(?\d\d\)? 9\d{4}-?\d{4}$"
     match = re.search(regra, telefone)
     return bool(match)
 
 
 def validar_datetime(datetime: str) -> bool:
     """Verifica se o número de telefone está dentro das regras de
-produção.
-    
+    produção.
+
     Regras
     - Sentenças devem ter o formato dd/mm/aaaa hh:mm:ss,
     onde d, m, a, h, m, s são numerais
     """
-    
-    pass
+    regra = r"^(\d\d/){2}\d{4} (\d\d:){2}\d{2}$"
+    match = re.search(regra, datetime)
+    return bool(match)
 
 
-def validar_numero(numero:str) -> bool:
+def validar_numero(numero: str) -> bool:
     """Verifica se o número de telefone está dentro das regras de
-produção.
-    
+    produção.
+
     Regras
     - Números podem começar com um dos símbolos de {+, -}
     - Caso possuam um símbolo de sinal, o símbolo seguinte deve ser um
@@ -120,6 +121,6 @@ produção.
       parte fracionária
     - Caso possuam um separador, após o separador seguirá um numeral
     """
-    regra = r"1"
-    match = re.search(regra, telefone)
+    regra = r"^[+-]?\d+(\.\d+)?$"
+    match = re.search(regra, numero)
     return bool(match)
