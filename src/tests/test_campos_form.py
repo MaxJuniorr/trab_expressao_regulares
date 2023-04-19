@@ -133,7 +133,9 @@ def test_validar_cpf_4() -> None:
 
 ##### TESTES TELEFONE #####
 def test_validar_telefone_1() -> None:
-    telefone = "(91) 99999-9999"
+    telefone = "" \
+               "" \
+               ""
     assert checa_campos_form.validar_telefone(telefone)
 
 

@@ -13,7 +13,7 @@ def caso_alfa(str: arranjo) -> bool:
         {bool}
     """
 
-    regra = r'HM|MH[hm]*m*[hm]*'
+    regra = r'HM|MH(?=(.*h.*|.*m.*m.*|.*m.*)[hm]{3}'
     reconhecido = re.search(regra)
     return bool(reconhecido)
 
