@@ -56,7 +56,7 @@ def validar_senha(senha: str) -> bool:
     #                   essas regras.
     #                   Isso evita o match parcial das 8 primeiras
     #                   ocorrências.
-    regra = r"^(?>=.*[A-Z])(?>=.*\d)[\w]{8}$"
+    regra = r"^(?>=.*[A-Z])(?>=.*\d)\w{8}$"
     match = re.search(regra, senha)
     return bool(match)
 
@@ -120,5 +120,6 @@ produção.
       parte fracionária
     - Caso possuam um separador, após o separador seguirá um numeral
     """
-    
-    pass
+    regra = r"1"
+    match = re.search(regra, telefone)
+    return bool(match)
