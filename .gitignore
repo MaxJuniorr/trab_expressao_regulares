@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Material do professor
+1_trabalho_expressao_regular.pdf
