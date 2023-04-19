@@ -227,4 +227,3 @@ def test_validar_numero_7() -> None:
 def test_validar_numero_8() -> None:
     numero = "+64,2"
     assert checa_campos_form.validar_numero(numero) == 0
-

@@ -57,7 +57,7 @@ def validar_senha(senha: str) -> bool:
     #                   Isso evita o match parcial das 8 primeiras
     #                   ocorrências.
     regra = r"^(?>=.*[A-Z])(?>=.*\d)[\w]{8}$"
-    match = re.search(regra,senha)
+    match = re.search(regra, senha)
     return bool(match)
 
 
@@ -74,7 +74,7 @@ produção.
     """
     
     regra = r"(\d{3}\.){2}\d{3}\-\d{2}"
-    match = re.search(regra,cpf)
+    match = re.search(regra, cpf)
     return bool(match)
 
 
