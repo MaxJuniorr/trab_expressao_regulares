@@ -19,7 +19,7 @@ def validar_nome(nome: str) -> bool:
 
 def validar_email(email: str) -> bool:
     """Verifica se o endereço de email analisado está dentro das
-regras de produção.
+    regras de produção.
 
     Regras
     - Emails devem conter um, e apenas um, símbolo '@'
@@ -63,7 +63,7 @@ def validar_senha(senha: str) -> bool:
 
 def validar_cpf(cpf: str) -> bool:
     """Verifica se o número de cpf analisado está dentro das regras de
-produção.
+    produção.
     
     Regras
     - O cpf deve conter apenas números
@@ -86,9 +86,8 @@ def validar_telefone(telefone: str) -> bool:
     - Números de telefone devem ter um dos seguintes formatos:
         - (xx) 9xxxx-xxxx
         - (xx) 9xxxxxxxxxx
-<<<<<<< HEAD
-        - 9xxxxxxxx
-onde x é um numeral 
+        - xx 9xxxxxxxx
+    onde x é um numeral
     """
     
     regra = r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
