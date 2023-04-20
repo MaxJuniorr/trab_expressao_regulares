@@ -38,7 +38,7 @@ def validar_email(email: str) -> bool:
 
 
 def validar_senha(senha: str) -> bool:
-    """Verifica se a senha analisada está dentro das regras de produção.
+    """Verifica se a senha analisada obedece às regras de produção.
     
     Regras
     - Senhas podem conter letras minúsculas, maiúsculas e/ou símbolos
@@ -89,7 +89,18 @@ def validar_telefone(telefone: str) -> bool:
         - xx 9xxxxxxxx
     onde x é um numeral
     """
-    
+
+    # Explicação do regex do grupo inicial:
+    # ^((\d{2}(?!.*\-.*)) -- ou começa com 2 digitos, se acontecer isso
+    #                        vai procurar um hifen adiante, e só vai
+    #                        reconhecer cadeias que não tenham o hífen.
+    # |(\(\d{2}\)))       -- ou começa com dois digitos entre parenteses
+    # ---------------------
+    # Regex após o grupo inicial
+    # \s9\d{4}-?\d{4}$    -- tem um espaço após o grupo inicial, seguido
+    #                        de quadro digitos, seguido de um hífen
+    #                        opcional, seguido de mais quatro dígitos, e
+    #                        deve encerrar a cadeia neste ponto.
     regra = r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
     match = re.search(regra, telefone)
     return bool(match)

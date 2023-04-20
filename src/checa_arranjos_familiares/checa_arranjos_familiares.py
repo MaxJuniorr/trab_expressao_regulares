@@ -1,7 +1,7 @@
 import re
 
 
-def caso_alfa(str: arranjo) -> bool:
+def validar_caso_alfa(arranjo: str) -> bool:
     """Reconhece casais heterossexuais mais velhos que os filhos com
     pelo menos duas filhas mulheres, ou pelo menos um filho homem, ou
     ainda pelo menos dois filhos homens e uma filha mulher.
@@ -13,32 +13,37 @@ def caso_alfa(str: arranjo) -> bool:
         {bool}
     """
 
-    regra = r'HM|MH(?=(.*h.*|.*m.*m.*|.*m.*)[hm]{3}'
-    reconhecido = re.search(regra)
+    subregra1 = r'(HM)|(MH)'
+    subregra2 = r'[hm]*m[hm]*m[hm]*'
+    subregra3 = r'[hm]*h[hm]*'
+    subregra4 = r'([hm]*h[hm]*h[m]*|[hm]*h[m]*h[hm]*|[m]*h[hm]*h[hm]*)'
+    regra = fr"^({subregra1})({subregra2}|{subregra3}|{subregra4})$"
+    print(regra)
+    reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)
 
-
-def caso_beta(str: arranjo) -> bool:
+validar_caso_alfa("HMmhh")
+def validar_caso_beta(arranjo: str) -> bool:
     pass
 
 
-def caso_charlie(str: arranjo) -> bool:
+def validar_caso_charlie(arranjo: str) -> bool:
     pass
 
 
-def caso_delta(str: arranjo) -> bool:
+def validar_caso_delta(arranjo: str) -> bool:
     pass
 
 
-def caso_echo(str: arranjo) -> bool:
+def validar_caso_echo(arranjo: str) -> bool:
     pass
 
 
-def caso_foxtrot(str: arranjo) -> bool:
+def validar_caso_foxtrot(arranjo: str) -> bool:
     pass
 
 
-def caso_golf(str: arranjo) -> bool:
+def validar_caso_golf(arranjo: str) -> bool:
     pass
 
 
