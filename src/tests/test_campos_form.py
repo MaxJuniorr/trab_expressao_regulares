@@ -2,7 +2,7 @@ from src.checa_campos_form import checa_campos_form
 from src.common import helper
 
 
-##### TESTES NOME #####
+#### TESTES NOME ####
 def test_validar_nome_1() -> None:
     nome = "Ada Lovelace"
     assert checa_campos_form.validar_nome(nome)
@@ -33,7 +33,7 @@ def test_validar_nome_6() -> None:
     assert checa_campos_form.validar_nome(nome) == 0, "Nomes não aceitam caracteres especiais ou números"
 
 
-##### TESTES EMAIL #####
+#### TESTES EMAIL ####
 def test_validar_email_1() -> None:
     email = "a@a.br"
     assert checa_campos_form.validar_email(email)
@@ -74,7 +74,7 @@ def test_validar_email_8() -> None:
     assert checa_campos_form.validar_email(email) == 0
 
 
-##### TESTES SENHA #####
+#### TESTES SENHA ####
 def test_validar_senha_1() -> None:
     senha = "518R2r5e"
     assert checa_campos_form.validar_senha(senha)
@@ -110,7 +110,7 @@ def test_validar_senha_7() -> None:
     assert checa_campos_form.validar_senha(senha) == 0
 
 
-##### TESTES CPF #####
+#### TESTES CPF ####
 def test_validar_cpf_1() -> None:
     cpf = "123.456.789-09"
     assert checa_campos_form.validar_cpf(cpf)
@@ -131,7 +131,7 @@ def test_validar_cpf_4() -> None:
     assert checa_campos_form.validar_cpf(cpf) == 0
 
 
-##### TESTES TELEFONE #####
+#### TESTES TELEFONE ####
 def test_validar_telefone_1() -> None:
     telefone = "(91) 99999-9999"
     assert checa_campos_form.validar_telefone(telefone)
@@ -162,7 +162,7 @@ def test_validar_telefone_6() -> None:
     assert checa_campos_form.validar_telefone(telefone) == 0
 
 
-##### TESTES DATETIME #####
+#### TESTES DATETIME ####
 def test_validar_datetime_1() -> None:
     datetime = "31/08/2019 20:14:55"
     assert checa_campos_form.validar_datetime(datetime)
@@ -188,7 +188,7 @@ def test_validar_datetime_5() -> None:
     assert checa_campos_form.validar_datetime(datetime) == 0
 
 
-##### TESTES NUMERO #####
+#### TESTES NUMERO ####
 def test_validar_numero_1() -> None:
     numero = "-25.467"
     assert checa_campos_form.validar_numero(numero)
