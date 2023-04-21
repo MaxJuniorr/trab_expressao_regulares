@@ -7,6 +7,10 @@ class Reconhecedor:
 
 
 class Nome(Reconhecedor):
+    def __str__(self):
+        return "Nome"
+
+
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o nome analisado está dentro das regras de produção.
 
@@ -25,6 +29,10 @@ class Nome(Reconhecedor):
 
 
 class Email(Reconhecedor):
+    def __str__(self):
+        return "Email"
+    
+
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o endereço de email analisado está dentro das
         regras de produção.
@@ -46,7 +54,11 @@ class Email(Reconhecedor):
 
 
 class Senha(Reconhecedor):
-    def reconhecer(self, senha: str) -> bool:
+    def __str__(self):
+        return "Senha"
+    
+    
+    def reconhecer(self, entrada: str) -> bool:
         """Verifica se a senha analisada obedece às regras de produção.
         
         Regras
@@ -66,12 +78,16 @@ class Senha(Reconhecedor):
         #                   Isso evita o match parcial das 8 primeiras
         #                   ocorrências.
         regra = r"^(?=.*[A-Z])(?=.*\d)\w{8}$"
-        match = re.search(regra, senha)
+        match = re.search(regra, entrada)
         return bool(match)
 
 
 class Cpf(Reconhecedor):
-    def reconhecer(self, cpf: str) -> bool:
+    def __str__(self):
+        return "CPF"
+
+
+    def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de cpf analisado está dentro das regras de
         produção.
         
@@ -84,12 +100,16 @@ class Cpf(Reconhecedor):
         """
         
         regra = r"(\d{3}\.){2}\d{3}\-\d{2}"
-        match = re.search(regra, cpf)
+        match = re.search(regra, entrada)
         return bool(match)
 
 
 class Telefone(Reconhecedor):
-    def reconhecer(self, telefone: str) -> bool:
+    def __str__(self):
+        return "Telefone"
+
+
+    def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
         produção.
 
@@ -113,12 +133,16 @@ class Telefone(Reconhecedor):
         #                        opcional, seguido de mais quatro dígitos, e
         #                        deve encerrar a cadeia neste ponto.
         regra = r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
-        match = re.search(regra, telefone)
+        match = re.search(regra, entrada)
         return bool(match)
 
 
 class Datetime(Reconhecedor):
-    def reconhecer(self, datetime: str) -> bool:
+    def __str__(self):
+        return "Datetime"
+
+
+    def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
         produção.
 
@@ -127,12 +151,16 @@ class Datetime(Reconhecedor):
         onde d, m, a, h, m, s são numerais
         """
         regra = r"^(\d\d/){2}\d{4} (\d\d:){2}\d{2}$"
-        match = re.search(regra, datetime)
+        match = re.search(regra, entrada)
         return bool(match)
 
 
 class Numero(Reconhecedor):
-    def reconhecer(self, numero: str) -> bool:
+    def __str__(self):
+        return "Numero"
+    
+
+    def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
         produção.
 
@@ -146,7 +174,7 @@ class Numero(Reconhecedor):
         - Caso possuam um separador, após o separador seguirá um numeral
         """
         regra = r"^[+-]?\d+(\.\d+)?$"
-        match = re.search(regra, numero)
+        match = re.search(regra, entrada)
         return bool(match)
 
 
