@@ -94,4 +94,226 @@ def test_validar_arranjo_beta_8() -> None:
 
 
 #### TESTES CHARLIE ####
+# Casais heterossexuais mais velhos que os filhos, com a filha mais
+# velha mulher e o filho mais novo homem.
 
+def test_validar_arranjo_charlie_1() -> None:
+    arranjo = "HHmmh"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+
+
+def test_validar_arranjo_charlie_2() -> None:
+    arranjo = "HmmhM"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+
+
+def test_validar_arranjo_charlie_3() -> None:
+    arranjo = "HMmhm"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+
+
+def test_validar_arranjo_charlie_4() -> None:
+    arranjo = "HMHmH"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+
+
+def test_validar_arranjo_charlie_5() -> None:
+    arranjo = "HMmhmh"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+
+
+def test_validar_arranjo_charlie_6() -> None:
+    arranjo = "MHmmmmh"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+
+
+def test_validar_arranjo_charlie_7() -> None:
+    arranjo = "HMmhhhhhhhhhhhhhhhhhhmhhhhhhhhhhhhhh"
+    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+
+
+#### TESTES DELTA ####
+# Casais heterossexuais mais velhos que os filhos, com pelo menos seis
+# filhos, em que os dois primeiros filhos formam um casal e os ultimos
+# também.
+
+def test_validar_arranjo_delta_1() -> None:
+    arranjo = "HMmhhmmh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_2() -> None:
+    arranjo = "HHmhmh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_3() -> None:
+    arranjo = "MMmhmhmm"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_4() -> None:
+    arranjo = "HHhhmmmh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_5() -> None:
+    arranjo = "HHhmhhhhhhhhhmhmhmhmmhmhmhmm"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_6() -> None:
+    arranjo = "MMhmhhm"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+
+def test_validar_arranjo_delta_7() -> None:
+    arranjo = "HHmhhhhhhhhhhhhhhhhhhmhhhhhhhhhhhhhm"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+
+
+def test_validar_arranjo_delta_8() -> None:
+    arranjo = "MMmhmmmmmmmmmmmmhmhmh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+
+
+def test_validar_arranjo_delta_9() -> None:
+    arranjo = "MMhmmhmh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+
+
+#### TESTES ECHO ####
+# Casais homossexuais mais velhos que os filhos, em que o sexo dos
+# filhos é alternado conforme a ordem de nascimento.
+
+def test_validar_arranjo_echo_1() -> None:
+    arranjo = "HMm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+
+
+def test_validar_arranjo_echo_2() -> None:
+    arranjo = "MHmhm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+
+
+def test_validar_arranjo_echo_3() -> None:
+    arranjo = "HHmhhmh"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+
+
+def test_validar_arranjo_echo_4() -> None:
+    arranjo = "MMm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+
+
+def test_validar_arranjo_echo_5() -> None:
+    arranjo = "HHhmhmhmhm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+def test_validar_arranjo_echo_6() -> None:
+    arranjo = "MMhmhmhmhm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+def test_validar_arranjo_echo_7() -> None:
+    arranjo = "HHmhmhm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+def test_validar_arranjo_echo_8() -> None:
+    arranjo = "HHh"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+def test_validar_arranjo_echo_9() -> None:
+    arranjo = "MMh"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+def test_validar_arranjo_echo_10() -> None:
+    arranjo = "HHmhm"
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+
+
+#### TESTES FOXTROT ####
+# Casais homossexuais mais velhos que os filhos, com qualquer quantidade
+# de filhos homens e mulheres, mas que nâo tiveram dois filhos homens
+# consecutivos
+
+def test_validar_arranjo_foxtrot_1() -> None:
+    arranjo = "HMm"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo) == 0
+
+
+def test_validar_arranjo_foxtrot_2() -> None:
+    arranjo = "HHhh"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo) == 0
+
+
+def test_validar_arranjo_foxtrot_3() -> None:
+    arranjo = "MMmhhm"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo) == 0
+
+
+def test_validar_arranjo_foxtrot_4() -> None:
+    arranjo = "HH"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo)
+
+
+def test_validar_arranjo_foxtrot_5() -> None:
+    arranjo = "MM"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo)
+
+
+def test_validar_arranjo_foxtrot_6() -> None:
+    arranjo = "HHhmmhmhmmh"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo)
+
+
+def test_validar_arranjo_foxtrot_7() -> None:
+    arranjo = "HHhmh"
+    assert checa_arranjos_familiares.\
+        validar_arranjo_foxtrot(arranjo)
+
+
+#### TESTES GOLF ####
+# Arranjo de no minimo x∈N e no maximo y∈N, com x>0, y>0, e x<=y, de
+# adultos (Hs ou Ms) mais velhos que os filhos, com qualquer quantidade
+# de filhos homens e mulheres, mas que os três filhos mais novos não
+# foram homens.
+
+def test_validar_arranjo_golf_1() -> None:
+    arranjo = "HHHMMhmhmhmhm"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+
+
+def test_validar_arranjo_golf_2() -> None:
+    arranjo = "HHHMMMhhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+
+
+def test_validar_arranjo_golf_3() -> None:
+    arranjo = "MMHHHmhmmmmhmhhhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+
+
+def test_validar_arranjo_golf_4() -> None:
+    arranjo = "HHHMMMhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+
+
+def test_validar_arranjo_golf_5() -> None:
+    arranjo = "HHHMMMMhhhm"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+
+
+def test_validar_arranjo_golf_6() -> None:
+    arranjo = "HMmhmhmhmmhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
