@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 
 .idea/
+
+1_trabalho_expressao_regular.pdf
 # C extensions
 *.so
 
