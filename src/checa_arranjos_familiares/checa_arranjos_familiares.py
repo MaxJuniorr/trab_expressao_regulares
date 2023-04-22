@@ -31,6 +31,7 @@ class Beta(Reconhecedor):
     def __str__(self):
         return "Beta"
 
+    # TODO: Implementar reconhecedor da questão 2.b
     def reconhecer(self, entrada: str) -> bool:
         pass
 
@@ -39,6 +40,7 @@ class Charlie(Reconhecedor):
     def __str__(self):
         return "Charlie"
 
+    # TODO: Implementar reconhecedor da questão 2.c
     def reconhecer(self, entrada: str) -> bool:
         pass
 
@@ -47,6 +49,7 @@ class Delta(Reconhecedor):
     def __str__(self):
         return "Delta"
 
+    # TODO: Implementar reconhecedor da questão 2.d
     def reconhecer(self, entrada: str) -> bool:
         pass
 
@@ -55,6 +58,7 @@ class Echo(Reconhecedor):
     def __str__(self):
         return "Echo"
 
+    # TODO: Implementar reconhecedor da questão 2.e
     def reconhecer(self, entrada: str) -> bool:
         pass
 
@@ -63,6 +67,7 @@ class Foxtrot(Reconhecedor):
     def __str__(self):
         return "Foxtrot"
 
+    # TODO: Implementar reconhecedor da questão 2.f
     def reconhecer(self, entrada: str) -> bool:
         pass
 
@@ -71,5 +76,6 @@ class Golf(Reconhecedor):
     def __str__(self):
         return "Golf"
 
+    # TODO: Implementar reconhecedor da questão 2.g
     def reconhecer(self, entrada: str) -> bool:
         pass
