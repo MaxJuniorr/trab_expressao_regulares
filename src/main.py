@@ -1,4 +1,5 @@
 from checa_campos_form import checa_campos_form
+from src.common.helper import Verificador
 
 
 nome = checa_campos_form.Nome()
@@ -24,7 +25,7 @@ for numero, opcao in opcoes.items():
     print(f"{numero} - {str(opcao)}")
 escolha = opcoes[input("Número escolhido: ")]
 
-verificador = checa_campos_form.Verificador(escolha)
+verificador = Verificador(escolha)
 entrada = input("Qual o valor a ser verificado? ")
 resultado = verificador.reconhecer(entrada)
 

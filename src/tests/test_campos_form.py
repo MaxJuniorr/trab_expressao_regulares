@@ -1,28 +1,28 @@
 from src.checa_campos_form import checa_campos_form
 from src.common import helper
-import pytest
+
 
 # Instanciando os reconhecedores para cada tipo de dado
 nome = checa_campos_form.Nome()
-verif_nome = checa_campos_form.Verificador(nome)
+verif_nome = helper.Verificador(nome)
 
 email = checa_campos_form.Email()
-verif_email = checa_campos_form.Verificador(email)
+verif_email = helper.Verificador(email)
 
 senha = checa_campos_form.Senha()
-verif_senha = checa_campos_form.Verificador(senha)
+verif_senha = helper.Verificador(senha)
 
 cpf = checa_campos_form.Cpf()
-verif_cpf = checa_campos_form.Verificador(cpf)
+verif_cpf = helper.Verificador(cpf)
 
 telefone = checa_campos_form.Telefone()
-verif_telefone = checa_campos_form.Verificador(telefone)
+verif_telefone = helper.Verificador(telefone)
 
 datetime = checa_campos_form.Datetime()
-verif_datetime = checa_campos_form.Verificador(datetime)
+verif_datetime = helper.Verificador(datetime)
 
 numero = checa_campos_form.Numero()
-verif_numero = checa_campos_form.Verificador(numero)
+verif_numero = helper.Verificador(numero)
 
 
 #### TESTES NOME ####
@@ -36,7 +36,7 @@ def test_validar_nome_2() -> None:
     assert verif_nome.reconhecer(nome)
 
 
-def test_validar_nome_3() -> None:
+def test_validar_nome_3() -> None:    
     nome = "1Alan"
     assert verif_nome.reconhecer(nome) == 0, "O primeiro caracter do nome precisa ser uma letra"
 

@@ -1,18 +1,14 @@
 import re
-
-
-class Reconhecedor:
-    def reconhecer(self, entrada: str):
-        pass
+from src.common.helper import Reconhecedor
 
 
 class Nome(Reconhecedor):
     def __str__(self):
         return "Nome"
 
-
     def reconhecer(self, entrada: str) -> bool:
-        """Verifica se o nome analisado está dentro das regras de produção.
+        """Verifica se o nome analisado está dentro das regras de
+        produção.
 
         Regras
         - Devem ser fornecidos no mínimo um nome e um sobrenome
@@ -27,11 +23,9 @@ class Nome(Reconhecedor):
         return bool(match)
 
 
-
 class Email(Reconhecedor):
     def __str__(self):
         return "Email"
-    
 
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o endereço de email analisado está dentro das
@@ -45,9 +39,10 @@ class Email(Reconhecedor):
         - O símbolo '@' não pode ser usado no começo do endereço
         - Endereços devem terminar com '.com.br' ou '.br'
         - Endereços devem conter pelo menos uma letra minúscula 
-            entre o símbolo '@' e a subcadeia '.com.br' ou a subcadeia '.br'
+            entre o símbolo '@' e a subcadeia '.com.br' ou 
+            a subcadeia '.br'
         """
-        
+
         regra = r"[a-z]+@[a-z]+(\.com)?\.br"
         match = re.search(regra, entrada)
         return bool(match)
@@ -56,17 +51,17 @@ class Email(Reconhecedor):
 class Senha(Reconhecedor):
     def __str__(self):
         return "Senha"
-    
-    
+
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se a senha analisada obedece às regras de produção.
         
         Regras
-        - Senhas podem conter letras minúsculas, maiúsculas e/ou símbolos
+        - Senhas podem conter letras minúsculas, maiúsculas e/ou
+          símbolos
         - Senhas devem conter pelo menos uma letra maiúsula e um número
         - Senhas devem ter o comprimento mínimo de 8 caracteres
         """
-        
+
         # Explicação do regex:
         # (?=.*[A-Z])   -> positive lookaround para encontrar pelo menos
         #                   uma letra maiúscula
@@ -86,7 +81,6 @@ class Cpf(Reconhecedor):
     def __str__(self):
         return "CPF"
 
-
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de cpf analisado está dentro das regras de
         produção.
@@ -98,7 +92,7 @@ class Cpf(Reconhecedor):
             
         Ex: 'nnn.nnn.nnn-nn', onde n é um numeral
         """
-        
+
         regra = r"(\d{3}\.){2}\d{3}\-\d{2}"
         match = re.search(regra, entrada)
         return bool(match)
@@ -107,7 +101,6 @@ class Cpf(Reconhecedor):
 class Telefone(Reconhecedor):
     def __str__(self):
         return "Telefone"
-
 
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
@@ -141,7 +134,6 @@ class Datetime(Reconhecedor):
     def __str__(self):
         return "Datetime"
 
-
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
         produção.
@@ -158,7 +150,6 @@ class Datetime(Reconhecedor):
 class Numero(Reconhecedor):
     def __str__(self):
         return "Numero"
-    
 
     def reconhecer(self, entrada: str) -> bool:
         """Verifica se o número de telefone está dentro das regras de
@@ -176,11 +167,3 @@ class Numero(Reconhecedor):
         regra = r"^[+-]?\d+(\.\d+)?$"
         match = re.search(regra, entrada)
         return bool(match)
-
-
-class Verificador:
-    def __init__(self, reconhecedor: Reconhecedor):
-        self.reconhecedor = reconhecedor
-
-    def reconhecer(self, entrada: str) -> bool:
-        return self.reconhecedor.reconhecer(entrada)

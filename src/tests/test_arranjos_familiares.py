@@ -2,95 +2,118 @@ from src.checa_arranjos_familiares import checa_arranjos_familiares
 from src.common import helper
 
 
+alfa = checa_arranjos_familiares.Alfa()
+verif_alfa = helper.Verificador(alfa)
+
+beta = checa_arranjos_familiares.Beta()
+verif_beta = helper.Verificador(beta)
+
+charlie = checa_arranjos_familiares.Charlie()
+verif_charlie = helper.Verificador(charlie)
+
+delta = checa_arranjos_familiares.Delta()
+verif_delta = helper.Verificador(delta)
+
+echo = checa_arranjos_familiares.Echo()
+verif_echo = helper.Verificador(echo)
+
+foxtrot = checa_arranjos_familiares.Foxtrot()
+verif_foxtrot = helper.Verificador(foxtrot)
+
+golf = checa_arranjos_familiares.Golf()
+verif_golf = helper.Verificador(golf)
+
+
 #### TESTES ALFA ####
 def test_validar_arranjo_alfa_1() -> None:
     arranjo = "HMm"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo) == 0
+    assert verif_alfa.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_alfa_2() -> None:
     arranjo = "mH"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo) == 0
+    assert verif_alfa.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_alfa_3() -> None:
     arranjo = "HH"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo) == 0
+    assert verif_alfa.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_alfa_4() -> None:
     arranjo = "MM"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo) == 0
+    assert verif_alfa.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_alfa_5() -> None:
     arranjo = "HMmm"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 def test_validar_arranjo_alfa_6() -> None:
     arranjo = "HMh"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 def test_validar_arranjo_alfa_7() -> None:
     arranjo = "HMhhhhmhhhm"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 def test_validar_arranjo_alfa_8() -> None:
     arranjo = "MHmhhhhhhhhhhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 def test_validar_arranjo_alfa_9() -> None:
     arranjo = "MHhhhhhhmhhhhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 def test_validar_arranjo_alfa_10() -> None:
     arranjo = "MHhhhhhhhhhhhhhm"
-    assert checa_arranjos_familiares.validar_arranjo_alfa(arranjo)
+    assert verif_alfa.reconhecer(arranjo)
 
 
 #### TESTES BETA ####
 def test_validar_arranjo_beta_1() -> None:
     arranjo = "HMmmh"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo) == 0
+    assert verif_beta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_beta_2() -> None:
     arranjo = "mmmhHM"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo) == 0
+    assert verif_beta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_beta_3() -> None:
     arranjo = "HHmmm"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo) == 0
+    assert verif_beta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_beta_4() -> None:
     arranjo = "MH"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo) == 0
+    assert verif_beta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_beta_5() -> None:
     arranjo = "HMhmmhmh"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo)
+    assert verif_beta.reconhecer(arranjo)
+
 
 def test_validar_arranjo_beta_6() -> None:
     arranjo = "MHmh"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo)
+    assert verif_beta.reconhecer(arranjo)
 
 
 def test_validar_arranjo_beta_7() -> None:
     arranjo = "HMhhhhhhhmhmhhhhhhhmhhhhhhhhhhhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo)
+    assert verif_beta.reconhecer(arranjo)
 
 
 def test_validar_arranjo_beta_8() -> None:
     arranjo = "MHhhhhhhhhhhhhhhhhhhhmhhhhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_beta(arranjo)
+    assert verif_beta.reconhecer(arranjo)
 
 
 #### TESTES CHARLIE ####
@@ -99,37 +122,37 @@ def test_validar_arranjo_beta_8() -> None:
 
 def test_validar_arranjo_charlie_1() -> None:
     arranjo = "HHmmh"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+    assert verif_charlie.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_charlie_2() -> None:
     arranjo = "HmmhM"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+    assert verif_charlie.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_charlie_3() -> None:
     arranjo = "HMmhm"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+    assert verif_charlie.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_charlie_4() -> None:
     arranjo = "HMHmH"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo) == 0
+    assert verif_charlie.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_charlie_5() -> None:
     arranjo = "HMmhmh"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+    assert verif_charlie.reconhecer(arranjo)
 
 
 def test_validar_arranjo_charlie_6() -> None:
     arranjo = "MHmmmmh"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+    assert verif_charlie.reconhecer(arranjo)
 
 
 def test_validar_arranjo_charlie_7() -> None:
     arranjo = "HMmhhhhhhhhhhhhhhhhhhmhhhhhhhhhhhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_charlie(arranjo)
+    assert verif_charlie.reconhecer(arranjo)
 
 
 #### TESTES DELTA ####
@@ -139,47 +162,47 @@ def test_validar_arranjo_charlie_7() -> None:
 
 def test_validar_arranjo_delta_1() -> None:
     arranjo = "HMmhhmmh"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_2() -> None:
     arranjo = "HHmhmh"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_3() -> None:
     arranjo = "MMmhmhmm"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_4() -> None:
     arranjo = "HHhhmmmh"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_5() -> None:
     arranjo = "HHhmhhhhhhhhhmhmhmhmmhmhmhmm"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_6() -> None:
     arranjo = "MMhmhhm"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+    assert verif_delta.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_delta_7() -> None:
     arranjo = "HHmhhhhhhhhhhhhhhhhhhmhhhhhhhhhhhhhm"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+    assert verif_delta.reconhecer(arranjo)
 
 
 def test_validar_arranjo_delta_8() -> None:
     arranjo = "MMmhmmmmmmmmmmmmhmhmh"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+    assert verif_delta.reconhecer(arranjo)
 
 
 def test_validar_arranjo_delta_9() -> None:
     arranjo = "MMhmmhmh"
-    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
+    assert verif_delta.reconhecer(arranjo)
 
 
 #### TESTES ECHO ####
@@ -188,52 +211,52 @@ def test_validar_arranjo_delta_9() -> None:
 
 def test_validar_arranjo_echo_1() -> None:
     arranjo = "HMm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+    assert verif_echo.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_echo_2() -> None:
     arranjo = "MHmhm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+    assert verif_echo.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_echo_3() -> None:
     arranjo = "HHmhhmh"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+    assert verif_echo.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_echo_4() -> None:
     arranjo = "MMm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+    assert verif_echo.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_echo_5() -> None:
     arranjo = "HHhmhmhmhm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 def test_validar_arranjo_echo_6() -> None:
     arranjo = "MMhmhmhmhm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 def test_validar_arranjo_echo_7() -> None:
     arranjo = "HHmhmhm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 def test_validar_arranjo_echo_8() -> None:
     arranjo = "HHh"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 def test_validar_arranjo_echo_9() -> None:
     arranjo = "MMh"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 def test_validar_arranjo_echo_10() -> None:
     arranjo = "HHmhm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo)
+    assert verif_echo.reconhecer(arranjo)
 
 
 #### TESTES FOXTROT ####
@@ -243,44 +266,37 @@ def test_validar_arranjo_echo_10() -> None:
 
 def test_validar_arranjo_foxtrot_1() -> None:
     arranjo = "HMm"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo) == 0
+    assert verif_foxtrot.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_foxtrot_2() -> None:
     arranjo = "HHhh"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo) == 0
+    assert verif_foxtrot.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_foxtrot_3() -> None:
     arranjo = "MMmhhm"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo) == 0
+    assert verif_foxtrot.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_foxtrot_4() -> None:
     arranjo = "HH"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo)
+    assert verif_foxtrot.reconhecer(arranjo)
 
 
 def test_validar_arranjo_foxtrot_5() -> None:
     arranjo = "MM"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo)
+    assert verif_foxtrot.reconhecer(arranjo)
 
 
 def test_validar_arranjo_foxtrot_6() -> None:
     arranjo = "HHhmmhmhmmh"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo)
+    assert verif_foxtrot.reconhecer(arranjo)
 
 
 def test_validar_arranjo_foxtrot_7() -> None:
     arranjo = "HHhmh"
-    assert checa_arranjos_familiares.\
-        validar_arranjo_foxtrot(arranjo)
+    assert verif_foxtrot.reconhecer(arranjo)
 
 
 #### TESTES GOLF ####
@@ -291,29 +307,29 @@ def test_validar_arranjo_foxtrot_7() -> None:
 
 def test_validar_arranjo_golf_1() -> None:
     arranjo = "HHHMMhmhmhmhm"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    assert verif_golf.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_golf_2() -> None:
     arranjo = "HHHMMMhhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    assert verif_golf.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_golf_3() -> None:
     arranjo = "MMHHHmhmmmmhmhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    assert verif_golf.reconhecer(arranjo) == 0
 
 
 def test_validar_arranjo_golf_4() -> None:
     arranjo = "HHHMMMhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    assert verif_golf.reconhecer(arranjo)
 
 
 def test_validar_arranjo_golf_5() -> None:
     arranjo = "HHHMMMMhhhm"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    assert verif_golf.reconhecer(arranjo)
 
 
 def test_validar_arranjo_golf_6() -> None:
     arranjo = "HMmhmhmhmmhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    assert verif_golf.reconhecer(arranjo)
