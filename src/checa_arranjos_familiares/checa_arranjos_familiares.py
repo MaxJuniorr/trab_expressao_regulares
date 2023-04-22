@@ -23,7 +23,19 @@ def validar_arranjo_alfa(arranjo: str) -> bool:
 
 
 def validar_arranjo_beta(arranjo: str) -> bool:
-    pass
+    """Reconhece Casais heterossexuais mais velhos que os filhos e com 
+    uma quantidade ímpar de filhas mulheres.
+    
+    Args:
+        arranjo {str} -- um arranjo familiar
+        
+    Retorna:
+        {boll}
+    """
+
+    regra = r"^(HM|MH)h*mh*((h*)m(h*)m(h*))*$"
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
 
 
 def validar_arranjo_charlie(arranjo: str) -> bool:
