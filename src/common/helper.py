@@ -2,7 +2,7 @@ from typing import Callable
 import re
 
 
-def verificador(regra: str) -> Callable[[str], bool]:
+def verificador(regra: Callable[[], str]) -> Callable[[str], bool]:
     """Recebe uma regra de produção e retorna uma função que
     verifica se uma cadeia de caracteres está dentro dessa regra.
     
@@ -13,7 +13,7 @@ def verificador(regra: str) -> Callable[[str], bool]:
         Callable[[str], bool] -- uma função que recebe uma cadeia de
         caracteres e retorna um booleano
     """
-    
+    regra = regra()
     def verifica(cadeia: str) -> bool:
         """Verifica se uma cadeia de caracteres está dentro de uma
         regra de produção.
