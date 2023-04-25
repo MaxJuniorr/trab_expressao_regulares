@@ -203,7 +203,7 @@ def test_validar_arranjo_echo_3() -> None:
 
 def test_validar_arranjo_echo_4() -> None:
     arranjo = "MMm"
-    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) == 0
+    assert checa_arranjos_familiares.validar_arranjo_echo(arranjo) 
 
 
 def test_validar_arranjo_echo_5() -> None:

@@ -47,7 +47,20 @@ def validar_arranjo_delta(arranjo: str) -> bool:
 
 
 def validar_arranjo_echo(arranjo: str) -> bool:
-    pass
+    """Casais homossexuais mais velhos que os filhos, 
+    em que o sexo dos filhos é alternado
+    conforme a ordem de nascimento.
+    
+    Args:
+        arranjo {str} -- um arranjo familiar
+
+    Retorna:
+        {bool}
+    """
+    
+    regra = r"^(HH|MM)m?(hm)*h?$" #^(HH|MM)(h|m|(hm)+h?|(mh)+m?)$
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
 
 
 def validar_arranjo_foxtrot(arranjo: str) -> bool:
