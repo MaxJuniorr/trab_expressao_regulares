@@ -64,7 +64,7 @@ def validar_arranjo_echo(arranjo: str) -> bool:
 
 
 def validar_arranjo_foxtrot(arranjo: str) -> bool:
-        """Casais homossexuais mais velhos que os filhos, com
+    """Casais homossexuais mais velhos que os filhos, com
     qualquer quantidade de filhos homens e mulheres, mas
     que não tiveram dois filhos homens consecutivos.
     Args:
@@ -79,7 +79,7 @@ def validar_arranjo_foxtrot(arranjo: str) -> bool:
 
 
 def validar_arranjo_golf(arranjo: str) -> bool:
-        """Arranjo de no mínimo x∈N e no máximo y ∈N , com x> 0 , y > 0 , e x≤ y , de
+    """Arranjo de no mínimo x∈N e no máximo y ∈N , com x> 0 , y > 0 , e x≤ y , de
     adultos (Hs ou Ms) mais velhos que os filhos, com qualquer quantidade de filhos
     homens e mulheres, mas que os três filhos mais novos não foram homens.
     Args:
