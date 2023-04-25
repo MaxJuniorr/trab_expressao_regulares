@@ -64,11 +64,30 @@ def validar_arranjo_echo(arranjo: str) -> bool:
 
 
 def validar_arranjo_foxtrot(arranjo: str) -> bool:
-    pass
+        """Casais homossexuais mais velhos que os filhos, com
+    qualquer quantidade de filhos homens e mulheres, mas
+    que não tiveram dois filhos homens consecutivos.
+    Args:
+        arranjo {str} -- um arranjo familiar
+    Retorna:
+        {boll}
+    """
+
+    regra = r"^(HH|MM)h?m*(m+h)*$"
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
 
 
 def validar_arranjo_golf(arranjo: str) -> bool:
-    pass
+        """Arranjo de no mínimo x∈N e no máximo y ∈N , com x> 0 , y > 0 , e x≤ y , de
+    adultos (Hs ou Ms) mais velhos que os filhos, com qualquer quantidade de filhos
+    homens e mulheres, mas que os três filhos mais novos não foram homens.
+    Args:
+        arranjo {str} -- um arranjo familiar
+    Retorna:
+        {boll}
+    """
 
-
-
+    regra = r"^$"
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
