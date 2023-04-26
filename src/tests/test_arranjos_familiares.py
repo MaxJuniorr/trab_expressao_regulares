@@ -185,7 +185,7 @@ def test_validar_arranjo_delta_10() -> None:
     arranjo = "HHmhm"
     assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
 
-def test_validar_arranjo_delta_10() -> None:
+def test_validar_arranjo_delta_11() -> None:
     arranjo = "HHmhmhhh"
     assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
 
