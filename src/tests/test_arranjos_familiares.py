@@ -181,6 +181,13 @@ def test_validar_arranjo_delta_9() -> None:
     arranjo = "MMhmmhmh"
     assert checa_arranjos_familiares.validar_arranjo_delta(arranjo)
 
+def test_validar_arranjo_delta_10() -> None:
+    arranjo = "HHmhm"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
+
+def test_validar_arranjo_delta_10() -> None:
+    arranjo = "HHmhmhhh"
+    assert checa_arranjos_familiares.validar_arranjo_delta(arranjo) == 0
 
 #### TESTES ECHO ####
 # Casais homossexuais mais velhos que os filhos, em que o sexo dos

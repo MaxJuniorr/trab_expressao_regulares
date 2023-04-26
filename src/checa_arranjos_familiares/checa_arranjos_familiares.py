@@ -43,8 +43,19 @@ def validar_arranjo_charlie(arranjo: str) -> bool:
 
 
 def validar_arranjo_delta(arranjo: str) -> bool:
-    pass
-
+    ''' Reconhece Casais homossexuais mais velhos que os filhos, com
+      pelo menos seis filhos, em que os dois primeiros filhos formam 
+      um casal e os últimos também.
+    
+    Args:
+        arranjo {str} -- um arranjo familiar
+        
+    Retorna:
+        {boll}'''
+    
+    regra = r"^(HH|MM)(hm|mh)(m|h){2}(m|h)*(hm|mh)$"
+    reconhecido = re.search(regra,arranjo)
+    return bool (reconhecido)
 
 def validar_arranjo_echo(arranjo: str) -> bool:
     """Casais homossexuais mais velhos que os filhos, 
