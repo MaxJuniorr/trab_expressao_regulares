@@ -51,7 +51,7 @@ def validar_arranjo_charlie(arranjo: str) -> bool:
     regra = r"^(HM|MH)m(m|h)*h$"
     reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)
-    pass
+
 
 
 def validar_arranjo_delta(arranjo: str) -> bool:
