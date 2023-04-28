@@ -39,23 +39,35 @@ def validar_arranjo_beta(arranjo: str) -> bool:
 
 
 def validar_arranjo_charlie(arranjo: str) -> bool:
+    """Casais heterossexuais mais velhos que os filhos, com a filha mais velha mulher e o filho
+    mais novo homem.
+
+    Args:
+        arranjo {str} -- um arranjo familiar
+    Retorna:
+        {boll}
+    """
+
+    regra = r"^(HM|MH)m(m|h)*h$"
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
     pass
 
 
 def validar_arranjo_delta(arranjo: str) -> bool:
-    ''' Reconhece Casais homossexuais mais velhos que os filhos, com
-      pelo menos seis filhos, em que os dois primeiros filhos formam 
-      um casal e os últimos também.
+    """ Reconhece Casais homossexuais mais velhos que os filhos, com
+    pelo menos seis filhos, em que os dois primeiros filhos formam
+    um casal e os últimos também.
     
     Args:
         arranjo {str} -- um arranjo familiar
         
     Retorna:
-        {boll}'''
+        {boll}"""
     
     regra = r"^(HH|MM)(hm|mh)(m|h){2}(m|h)*(hm|mh)$"
-    reconhecido = re.search(regra,arranjo)
-    return bool (reconhecido)
+    reconhecido = re.search(regra, arranjo)
+    return bool(reconhecido)
 
 def validar_arranjo_echo(arranjo: str) -> bool:
     """Casais homossexuais mais velhos que os filhos, 
@@ -93,6 +105,7 @@ def validar_arranjo_golf(arranjo: str) -> bool:
     """Arranjo de no mínimo x∈N e no máximo y ∈N , com x> 0 , y > 0 , e x≤ y , de
     adultos (Hs ou Ms) mais velhos que os filhos, com qualquer quantidade de filhos
     homens e mulheres, mas que os três filhos mais novos não foram homens.
+
     Args:
         arranjo {str} -- um arranjo familiar
     Retorna:
