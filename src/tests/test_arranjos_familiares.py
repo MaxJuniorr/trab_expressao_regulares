@@ -302,7 +302,7 @@ def test_validar_arranjo_golf_1() -> None:
     y = 2
     arranjo = "HHHMMhmhmhmhm"
     with pytest.raises(Exception) as e:
-        checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
+        checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
         assert str(e.value) == "x deve ser menor ou igual a y"
 
 
