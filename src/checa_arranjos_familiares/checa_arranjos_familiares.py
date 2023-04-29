@@ -111,8 +111,10 @@ def validar_arranjo_golf(arranjo: str, x: int, y: int) -> bool:
     Retorna:
         {boll}
     """
-
-    regra = r"^$"
+    
+    # Para escapar a chave da f-string, pode-se usar a sintaxe "{{" ao 
+    # invés de "\{".
+    regra = fr"^(H|M){{{x},{y}}}(h|m)*^(hhh)$"
     reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)
 
