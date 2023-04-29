@@ -1,5 +1,6 @@
 from src.checa_arranjos_familiares import checa_arranjos_familiares
 from src.common import helper
+import pytest
 
 
 #### TESTES ALFA ####
@@ -297,8 +298,12 @@ def test_validar_arranjo_foxtrot_7() -> None:
 # foram homens.
 
 def test_validar_arranjo_golf_1() -> None:
+    x = 3
+    y = 2
     arranjo = "HHHMMhmhmhmhm"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    with pytest.raises(Exception) as e:
+        checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
+        assert str(e.value) == "x deve ser menor ou igual a y"
 
 
 def test_validar_arranjo_golf_2() -> None:
@@ -308,7 +313,7 @@ def test_validar_arranjo_golf_2() -> None:
 
 def test_validar_arranjo_golf_3() -> None:
     arranjo = "MMHHHmhmmmmhmhhhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    resultado = checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
 
 
 def test_validar_arranjo_golf_4() -> None:
@@ -322,5 +327,13 @@ def test_validar_arranjo_golf_5() -> None:
 
 
 def test_validar_arranjo_golf_6() -> None:
+    x = 1
+    y = 3
     arranjo = "HMmhmhmhmmhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+def test_validar_arranjo_golf_7() -> None:
+    x = 1
+    y = 3
+    arranjo = "HMmhmhmhmmhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
