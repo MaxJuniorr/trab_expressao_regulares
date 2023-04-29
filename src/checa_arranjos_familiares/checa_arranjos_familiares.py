@@ -102,18 +102,16 @@ def validar_arranjo_foxtrot(arranjo: str) -> bool:
 
 
 def validar_arranjo_golf(arranjo: str, x: int, y: int) -> bool:
-    """Arranjo de no mínimo x ∈ N e no máximo y ∈ N, com x > 0, y > 0 , e x ≤ y , de
-    adultos (Hs ou Ms) mais velhos que os filhos, com qualquer quantidade de filhos
-    homens e mulheres, mas que os três filhos mais novos não foram homens.
+    """Arranjo de no mínimo x ∈ N e no máximo y ∈ N, com x > 0, y > 0 ,
+    e x ≤ y , de adultos (Hs ou Ms) mais velhos que os filhos, com
+    qualquer quantidade de filhos homens e mulheres, mas que os três
+    filhos mais novos não foram homens.
 
     Args:
         arranjo {str} -- um arranjo familiar
     Retorna:
-        {boll}
+        {bool}
     """
-    #if not (x <= y and x > 0 and y > 0):
-
-
 
     assert x <= y, "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
     # Para escapar a chave da f-string, pode-se usar a sintaxe "{{" ao 
@@ -121,4 +119,3 @@ def validar_arranjo_golf(arranjo: str, x: int, y: int) -> bool:
     regra = fr"^(H|M){{{x},{y}}}(((h|m)*(m{{1,2}}|mh{{1,2}}))|h{{1,2}})$" #!(hhh) ou  ^[hhh]
     reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)
-
