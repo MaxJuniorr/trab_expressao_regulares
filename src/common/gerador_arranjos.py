@@ -1,4 +1,4 @@
-import itertools
+from typing import Callable
 import random
 
 
@@ -16,9 +16,9 @@ def criar_nsais_platonico(n:int) -> str:
 ########## filhos
 # [WARNING] Regras que definem tamanho devem ser aplicadas primeiro
 
-def iniciar_prole() -> str:
+def _iniciar_prole() -> str:
     '''Cria uma prole combinando "h" e "m" de tamanho n'''
-    n = random.randint(100)
+    n = random.randint(0,100)
     return ''.join(random.choices('hm', k=n))
 
 
@@ -219,9 +219,26 @@ def nao_filhos_m_consecutivos() -> str:
     cadeia = cadeia[:indice] + casal_random + cadeia[indice+2:]
 
 
-def nao_ultimos3_h_consecutivos() -> str:
+def nao_ultimos3_h_consecutivos(cadeia: str) -> str:
     """Retorna uma string em que não há 3 'h's consecutivos no final."""
     if 'hhh' != cadeia[-3:]:
         return cadeia
-    casal_random = random.randin(('hm', 'mh'))
-    cadeia = cadeia[:indice] + casal_random + cadeia[indice+2:]
+    random_element = random.randint(-3, -1)
+    if random_element == -1:
+        cadeia = cadeia[:-1] + 'm'
+        return cadeia
+    cadeia = cadeia[:random_element] + 'm' + cadeia[random_element+1:]
+    return cadeia
+
+
+def gerador_arranjo(*regras: Callable[[str], str]) -> str:
+    """Retorna uma função que gera strings que satisfazem todas as
+    regras passadas.
+    """
+
+    def gerar_arranjo() -> str:
+        """Retorna uma string aleatória."""
+        base = _iniciar_prole()
+        for regra in regras:
+            base = regra(base)
+    return gerar_arranjo
