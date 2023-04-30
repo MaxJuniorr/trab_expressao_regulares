@@ -133,19 +133,47 @@ def ceil_m(cadeia: str, n: int) -> str:
 
 def impar_h(cadeia: str) -> str:
     """Retorna uma string com uma quantidade impar de 'h's."""
-    num_h = cadeia.count('h')
-    if num_h % 2 == 0:
-        return cadeia, True
-    indice = random.randint(len(cadeia))
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join("h"), False
+    
+    num_m = cadeia.count('h')
+
+    # se a regra ja estiver satisfeita, não muda a cadeia e retorna True pro validador
+    if num_m % 2 != 0:
+        return cadeia, True 
+    
+    # se só tiver "h" e a regra não for satisfeita, trocamos um "h" por "m"
+    if cadeia.count('m') == 0:
+        indice = random.randint(0, len(cadeia)-1)
+        return cadeia[:indice] + 'm' + cadeia[indice+1:], False
+    
+    # se tiver "h" e "m" um "m" é sorteado para tornar-se "h"
+    indice = random.randint(0, len(cadeia)-1)
+    while cadeia[indice] == 'h':
+        indice = random.randint(0, len(cadeia)-1)
     cadeia = cadeia[:indice] + 'h' + cadeia[indice+1:]
     return cadeia, False
     
 
 def impar_m(cadeia: str) -> str:
     """Retorna uma string com uma quantidade impar de 'm's."""
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join("m"), False
+
     num_m = cadeia.count('m')
+
+    # se a regra ja estiver satisfeita, não muda a cadeia e retorna True pro validador
     if num_m % 2 != 0:
-        return cadeia, True    
+        return cadeia, True 
+
+    # se só tiver "m" e a regra não for satisfeita, trocamos um "m" por "h"
+    if cadeia.count('h') == 0:
+        indice = random.randint(0, len(cadeia)-1)
+        return cadeia[:indice] + 'h' + cadeia[indice+1:], False
+    
+    # se tiver "h" e "m" um "m" é sorteado para tornar-se "h"
     indice = random.randint(0, len(cadeia)-1)
     while cadeia[indice] == 'm':
         indice = random.randint(0, len(cadeia)-1)
