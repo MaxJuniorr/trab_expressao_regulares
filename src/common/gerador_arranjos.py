@@ -22,6 +22,8 @@ def _iniciar_prole() -> str:
     return ''.join(random.choices('hm', k=n))
 
 
+# [TODO] Modificar para acomodar um gerador que aceite mais de uma
+# função limite
 def floor6_prole(cadeia: str) -> str:
     """Retorna uma prole de tamanho mínimo 6."""
     tam = len(cadeia)
@@ -120,9 +122,11 @@ def impar_h(cadeia: str) -> str:
 def impar_m(cadeia: str) -> str:
     """Retorna uma string com uma quantidade impar de 'm's."""
     num_m = cadeia.count('m')
-    if num_m % 2 == 0:
-        return cadeia, True
-    indice = random.randint(len(cadeia))
+    if num_m % 2 != 0:
+        return cadeia, True    
+    indice = random.randint(0, len(cadeia)-1)
+    while cadeia[indice] == 'm':
+        indice = random.randint(0, len(cadeia)-1)
     cadeia = cadeia[:indice] + 'm' + cadeia[indice+1:]
     return cadeia, False
 
@@ -147,7 +151,7 @@ def par_m(cadeia: str) -> str:
     return cadeia, False
 
 
-def mais_velho_h(cadeia: str) -> str:
+def mais_novo_h(cadeia: str) -> str:
     """Retorna uma string em que o filho mais velho é h"""
     if cadeia[-1] == 'h':
         return cadeia, True
@@ -155,7 +159,7 @@ def mais_velho_h(cadeia: str) -> str:
     return cadeia, False
 
 
-def mais_velho_m(cadeia: str) -> str:
+def mais_novo_m(cadeia: str) -> str:
     """Retorna uma string em que o filho mais velho é m"""
     if cadeia[-1] == 'm':
         return cadeia, True
@@ -163,7 +167,7 @@ def mais_velho_m(cadeia: str) -> str:
     return cadeia, False
 
 
-def mais_novo_h(cadeia: str) -> str:
+def mais_velho_h(cadeia: str) -> str:
     """Retorna uma string em que o filho mais novo é h"""
     if cadeia[0] == 'h':
         return cadeia, True
@@ -171,7 +175,7 @@ def mais_novo_h(cadeia: str) -> str:
     return cadeia, False
 
 
-def mais_novo_m(cadeia: str) -> str:
+def mais_velho_m(cadeia: str) -> str:
     """Retorna uma string em que o filho mais novo é m"""
     if cadeia[0] == 'm':
         return cadeia, True
@@ -194,7 +198,7 @@ def casal_ultimo(cadeia: str) -> str:
     """Retorna uma string em que os dois últimos elementos formam um
     casal.
     """
-    if (cadeia[0:2] == 'hm') or (cadeia[0:2] == 'mh'):
+    if (cadeia[-2:] == 'hm') or (cadeia[-2:] == 'mh'):
         return cadeia, True
     casal_random = random.choice(('hm', 'mh'))
     cadeia = cadeia[:-2] + casal_random
@@ -249,7 +253,7 @@ def nao_ultimos3_h_consecutivos(cadeia: str) -> str:
     return cadeia, False
 
 
-def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero) -> Callable[[], str]:
+def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero, regra_limites=None, int_params=None) -> Callable[[], str]:
     """Retorna uma função que gera strings que satisfazem todas as
     regras passadas.
     """
@@ -258,11 +262,16 @@ def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais
         """Retorna uma string aleatória."""
         base = _iniciar_prole()
         
-        validador = []
-        while validador == True:
+        if regra_limites and int_params:
+            for i in range(len(regra_limites)):
+                base = regra_limites[i](base, int_params[i])[0]
+
+        validador = 0
+        while validador != 1:
+            validador = 1
             for regra in regras_prole:
                 base = regra(base)[0]
-                validador.append(regra(base)[1])
+                validador *= regra(base)[1]
         return regra_pais() + base
     
     return gerar_arranjo
