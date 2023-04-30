@@ -22,8 +22,6 @@ def _iniciar_prole() -> str:
     return ''.join(random.choices('hm', k=n))
 
 
-# [TODO] Modificar para acomodar um gerador que aceite mais de uma
-# função limite
 def floor6_prole(cadeia: str) -> str:
     """Retorna uma prole de tamanho mínimo 6."""
     tam = len(cadeia)
@@ -31,20 +29,31 @@ def floor6_prole(cadeia: str) -> str:
         return cadeia, True
     return cadeia + ''.join(random.choices('hm', k=6-tam)), False
 
-
-def floor_h(cadeia: str, n: int) -> str:
+# funções limite
+def floor_h(cadeia: str, n: int, modificar: bool = None, na: int = None) -> str:
     """Retorna uma string com pelo menos n 'h's."""
+
+    #Resolvendo um limite que já veio anteriormente
+    if not(modificar == None and na == None) and len(cadeia) < n+na:
+        cadeia = "m"*(n+na)
+        i = 0
+        while i < n:
+            indice = random.randint(0, len(cadeia) - 1)
+            if cadeia[indice] != "h":
+                cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
+                i += 1
+        return cadeia
 
     # resolver problema com len(cadeia) < n ocorre loop infinito
     if len(cadeia) <= n:
-        return ''.join(random.choices('h', k=n)), False
+        return ''.join(random.choices('h', k=n))
     
     
     qtd = cadeia.count('h')
     controle = n - qtd
 
     if controle <= 0:
-        return cadeia, True
+        return cadeia
 
     i = 0
     while i < controle:
@@ -52,20 +61,33 @@ def floor_h(cadeia: str, n: int) -> str:
         if cadeia[indice] != "h":
             cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
             i += 1
-    return cadeia, False
+    return cadeia
 
 
-def floor_m(cadeia: str, n: int) -> str:
+def floor_m(cadeia: str, n: int, modificar: bool = None, na: int = None) -> str:
     """Retorna uma string com pelo menos n 'm's."""
+
+    #Resolvendo um limite que já veio anteriormente
+    if not(modificar == None and na == None) and len(cadeia) < n+na:
+        cadeia = "h"*(n+na)
+        i = 0
+        while i < n:
+            indice = random.randint(0, len(cadeia) - 1)
+            if cadeia[indice] != "m":
+                cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
+                i += 1
+        return cadeia
+
+
     # resolver problema com len(cadeia) < n ocorre loop infinito
     if len(cadeia) <= n:
-        return ''.join(random.choices('m', k=n)), False
+        return ''.join(random.choices('m', k=n))
     
     qtd = cadeia.count('m')
     controle = n - qtd
 
     if controle <= 0:
-        return cadeia, True
+        return cadeia
 
     i = 0
     while i < controle:
@@ -73,9 +95,9 @@ def floor_m(cadeia: str, n: int) -> str:
         if cadeia[indice] != "m":
             cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
             i += 1
-    return cadeia, False
+    return cadeia
 
-
+#A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
 def ceil_h(cadeia: str, n: int) -> str:
     """Retorna uma string com no máximo n 'h's."""
 
@@ -92,7 +114,7 @@ def ceil_h(cadeia: str, n: int) -> str:
             i += 1
     return cadeia, False
 
-
+#A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
 def ceil_m(cadeia: str, n: int) -> str:
     """Retorna uma string com no máximo n 'm's."""
     
@@ -264,7 +286,10 @@ def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais
         
         if regra_limites and int_params:
             for i in range(len(regra_limites)):
-                base = regra_limites[i](base, int_params[i])[0]
+                if i == 1:
+                    base = regra_limites[i](base, int_params[i], True, int_params[i-1])
+                else:
+                    base = regra_limites[i](base, int_params[i])
 
         validador = 0
         while validador != 1:
