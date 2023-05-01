@@ -96,7 +96,7 @@ def validar_arranjo_foxtrot(arranjo: str) -> bool:
         {boll}
     """
 
-    regra = r"^(HH|MM)h?m*(m+h)*$"
+    regra = r"^(HH|MM)h?m*(m+h)*m*$"
     reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)
 

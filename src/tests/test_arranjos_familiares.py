@@ -280,7 +280,7 @@ def test_validar_arranjo_foxtrot_5() -> None:
 
 
 def test_validar_arranjo_foxtrot_6() -> None:
-    arranjo = "HHhmmhmhmmh"
+    arranjo = "HHhmmmmhmmmhmmhmmmhmmmhmmmhmhmhmhmmmhmmhmhm"
     assert checa_arranjos_familiares.\
         validar_arranjo_foxtrot(arranjo)
 

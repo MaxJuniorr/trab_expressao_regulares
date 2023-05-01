@@ -11,8 +11,11 @@ def criar_casais_homo() -> str:
 
 
 def criar_nsais_platonico(x:int, y: int) -> str:
+    assert x <= y and x > 0 and y > 0, "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
+
     def nsal_concreto():
-        n_sorteado = random.randint(x, y)
+
+        n_sorteado = random.randint(x, y) if x != y else x
         return ''.join(random.choices('HM', k=n_sorteado))
     return nsal_concreto
 
@@ -206,6 +209,14 @@ def par_m(cadeia: str) -> str:
 
 def mais_novo_h(cadeia: str) -> str:
     """Retorna uma string em que o filho mais velho é h"""
+
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join('h'), False
+    # para um caso de regra conjunta
+    if len(cadeia) == 1 and cadeia[0] == 'm':
+        return cadeia + 'h', False
+
     if cadeia[-1] == 'h':
         return cadeia, True
     cadeia = cadeia[:-1] + 'h'
@@ -214,6 +225,14 @@ def mais_novo_h(cadeia: str) -> str:
 
 def mais_novo_m(cadeia: str) -> str:
     """Retorna uma string em que o filho mais velho é m"""
+
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join('m'), False
+    # para um caso de regra conjunta
+    if len(cadeia) == 1 and cadeia[0] == 'h':
+        return cadeia + 'm', False
+    
     if cadeia[-1] == 'm':
         return cadeia, True
     cadeia = cadeia[:-1] + 'm'
@@ -222,6 +241,14 @@ def mais_novo_m(cadeia: str) -> str:
 
 def mais_velho_h(cadeia: str) -> str:
     """Retorna uma string em que o filho mais novo é h"""
+
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join('h'), False
+    # para um caso de regra conjunta
+    if len(cadeia) == 1 and cadeia[0] == 'm':
+        return 'h' + cadeia, False
+
     if cadeia[0] == 'h':
         return cadeia, True
     cadeia = 'h' + cadeia[1:]
@@ -230,6 +257,14 @@ def mais_velho_h(cadeia: str) -> str:
 
 def mais_velho_m(cadeia: str) -> str:
     """Retorna uma string em que o filho mais novo é m"""
+
+    # cadeia vazia não faz parte da linguagem, retorna o caso mínimo
+    if len(cadeia) == 0:
+        return "".join('m'), False
+    # para um caso de regra conjunta
+    if len(cadeia) == 1 and cadeia[0] == 'h':
+        return 'm' + cadeia, False
+
     if cadeia[0] == 'm':
         return cadeia, True
     cadeia = 'm' + cadeia[1:]
@@ -306,7 +341,15 @@ def nao_ultimos3_h_consecutivos(cadeia: str) -> str:
     return cadeia, False
 
 
-def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero, regra_limites=None, int_params=None) -> Callable[[], str]:
+def disjuncao(*opcoes) -> str:
+    def interior() -> str:
+        regras = [opcao() for opcao in opcoes]
+        chosen = random.choice(regras)
+        return chosen
+    return interior
+    
+
+def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero, regra_limites: tuple =None, int_params: tuple =None) -> Callable[[], str]:
     """Retorna uma função que gera strings que satisfazem todas as
     regras passadas.
     """
