@@ -1,6 +1,6 @@
 from typing import Callable
 import re
-
+from functools import wraps
 
 def verificador(regra: Callable[[], str]) -> Callable[[str], bool]:
     """Recebe uma regra de produção e retorna uma função que
@@ -14,8 +14,7 @@ def verificador(regra: Callable[[], str]) -> Callable[[str], bool]:
         caracteres e retorna um booleano
     """
 
-    regra = regra()
-
+    @wraps(regra)
     def verifica(cadeia: str) -> bool:
         """Verifica se uma cadeia de caracteres está dentro de uma
         regra de produção.
@@ -28,7 +27,7 @@ def verificador(regra: Callable[[], str]) -> Callable[[str], bool]:
             contrário
         """
         
-        match = re.search(regra, cadeia)
+        match = re.search(regra(), cadeia)
         return bool(match)
     
     return verifica
