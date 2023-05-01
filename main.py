@@ -10,13 +10,20 @@ funcionalidade = int(input("Sua escolha: "))
 
 if funcionalidade == 1:
     nome = checa_campos_form.validar_nome
+    nome.__name__ = "validar_nome"
     email = checa_campos_form.validar_email
+    email.__name__ = "validar_email"
     senha = checa_campos_form.validar_senha
+    senha.__name__ = "validar_senha"
     cpf = checa_campos_form.validar_cpf
+    cpf.__name__ = "validar_cpf"
     telefone = checa_campos_form.validar_telefone
+    telefone.__name__ = "validar_telefone"
     datetime = checa_campos_form.validar_datetime
+    datetime.__name__ = "validar_datetime"
     numero = checa_campos_form.validar_numero
-
+    numero.__name__ = "validar_numero"
+    
     opcoes = {
         "1": nome,
         "2": email,
@@ -26,7 +33,7 @@ if funcionalidade == 1:
         "6": datetime,
         "7": numero,
     }
-
+    
     print("Escolha uma opção: ")
     for numero, opcao in opcoes.items():
         print(f"{numero} - {opcao.__name__}")
@@ -37,3 +44,5 @@ if funcionalidade == 1:
     # resultado = verificador.reconhecer(entrada)
 
     # print(f"{str(escolha)} é {'valido(a)' if resultado else 'invalido(a)'}")
+
+    

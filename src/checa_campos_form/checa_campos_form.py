@@ -3,7 +3,8 @@ from src.common.gera_verificador import verificador
 
 @verificador
 def validar_nome() -> str:
-    """Verifica se o nome analisado está dentro das regras de produção.
+    """
+    Verifica se o nome analisado está dentro das regras de produção.
 
     Regras
     - Devem ser fornecidos no mínimo um nome e um sobrenome
@@ -18,7 +19,8 @@ def validar_nome() -> str:
 
 @verificador
 def validar_email() -> str:
-    """Verifica se o endereço de email analisado está dentro das
+    """
+    Verifica se o endereço de email analisado está dentro das
     regras de produção.
 
     Regras
@@ -37,7 +39,8 @@ def validar_email() -> str:
 
 @verificador
 def validar_senha() -> str:
-    """Verifica se a senha analisada obedece às regras de produção.
+    """
+    Verifica se a senha analisada obedece às regras de produção.
     
     Regras
     - Senhas podem conter letras minúsculas, maiúsculas e/ou símbolos
@@ -60,7 +63,8 @@ def validar_senha() -> str:
 
 @verificador
 def validar_cpf() -> str:
-    """Verifica se o número de cpf analisado está dentro das regras de
+    """
+    Verifica se o número de cpf analisado está dentro das regras de
     produção.
     
     Regras
@@ -76,7 +80,8 @@ def validar_cpf() -> str:
 
 @verificador
 def validar_telefone() -> str:
-    """Verifica se o número de telefone está dentro das regras de
+    """
+    Verifica se o número de telefone está dentro das regras de
     produção.
 
     Regras
@@ -103,7 +108,8 @@ def validar_telefone() -> str:
 
 @verificador
 def validar_datetime() -> str:
-    """Verifica se o número de telefone está dentro das regras de
+    """
+    Verifica se o número de telefone está dentro das regras de
     produção.
 
     Regras
@@ -115,7 +121,8 @@ def validar_datetime() -> str:
 
 @verificador
 def validar_numero() -> str:
-    """Verifica se o número de telefone está dentro das regras de
+    """
+    Verifica se o número de telefone está dentro das regras de
     produção.
 
     Regras
