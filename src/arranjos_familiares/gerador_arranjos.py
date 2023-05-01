@@ -10,8 +10,11 @@ def criar_casais_homo() -> str:
     return ''.join(random.choices(('HH', 'MM'), k=1))
 
 
-def criar_nsais_platonico(n:int) -> str:
-    return ''.join(random.choices('HM', k=n))
+def criar_nsais_platonico(x:int, y: int) -> str:
+    def nsal_concreto():
+        n_sorteado = random.randint(x, y)
+        return ''.join(random.choices('HM', k=n_sorteado))
+    return nsal_concreto
 
 ########## filhos
 # [WARNING] Regras que definem tamanho devem ser aplicadas primeiro

@@ -1,5 +1,5 @@
-from src.checa_arranjos_familiares import checa_arranjos_familiares
-from src.common import helper
+from src.arranjos_familiares import checa_arranjos_familiares
+from src.common import gera_verificador
 import pytest
 
 
@@ -298,42 +298,91 @@ def test_validar_arranjo_foxtrot_7() -> None:
 # foram homens.
 
 def test_validar_arranjo_golf_1() -> None:
+    """Teste quando x > y"""
     x = 3
     y = 2
     arranjo = "HHHMMhmhmhmhm"
     with pytest.raises(Exception) as e:
         checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
-        assert str(e.value) == "x deve ser menor ou igual a y"
+        assert str(e.value) == "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
 
 
 def test_validar_arranjo_golf_2() -> None:
-    arranjo = "HHHMMMhhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    """Teste quando x == 0"""
+    x = 0
+    y = 10
+    arranjo = "HHHMMMhhmh"
+    with pytest.raises(Exception) as e:
+        checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+        assert str(e.value) == "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
 
 
 def test_validar_arranjo_golf_3() -> None:
-    arranjo = "MMHHHmhmmmmhmhhhh"
-    resultado = checa_arranjos_familiares.validar_arranjo_golf(arranjo) == 0
+    """Teste quando numero de pais not in range(2,5)"""
+    x = 2
+    y = 5
+    arranjo = "HHHMMMhmmhmh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
 
 
 def test_validar_arranjo_golf_4() -> None:
+    x = 2
+    y = 3
     arranjo = "HHHMMMhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
 
 
 def test_validar_arranjo_golf_5() -> None:
-    arranjo = "HHHMMMMhhhm"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo)
+    x = 3
+    y = 5
+    arranjo = "HHhhhm"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
 
 
 def test_validar_arranjo_golf_6() -> None:
     x = 1
     y = 3
-    arranjo = "HMmhmhmhmmhh"
-    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+    arranjo = "HMmhmhmhmmhhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
+
 
 def test_validar_arranjo_golf_7() -> None:
     x = 1
     y = 3
-    arranjo = "HMmhmhmhmmhh"
+    arranjo = "HM"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+
+def test_validar_arranjo_golf_8() -> None:
+    x = 3
+    y = 5
+    arranjo = "HMMmhmhmhmmhhmhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+
+def test_validar_arranjo_golf_9() -> None:
+    x = 2
+    y = 4
+    arranjo = "HHHMhhhmh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+
+def test_validar_arranjo_golf_10() -> None:
+    x = 7
+    y = 7
+    arranjo = "HHHMMHMhhhmhh"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+
+def test_validar_arranjo_golf_11() -> None:
+    x = 1
+    y = 1
+    arranjo = "HMHHMhmhm"
+    assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y) == 0
+
+
+def test_validar_arranjo_golf_12() -> None:
+    x = 1
+    y = 1
+    arranjo = "H"
     assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)

@@ -113,9 +113,10 @@ def validar_arranjo_golf(arranjo: str, x: int, y: int) -> bool:
         {bool}
     """
 
-    assert x <= y, "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
+    # assert x <= y, "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
     # Para escapar a chave da f-string, pode-se usar a sintaxe "{{" ao 
     # invés de "\{".
-    regra = fr"^(H|M){{{x},{y}}}(((h|m)*(m{{1,2}}|mh{{1,2}}))|h{{1,2}})$" #!(hhh) ou  ^[hhh]
+    assert x <= y and x > 0 and y > 0, "Os parâmetros não obedecem a regra x > 0, y > 0 , e x <= y"
+    regra = fr"^(H|M){{{x},{y}}}(((h|m)*(m{{1,2}}|mh{{1,2}}))|h{{1,2}})?$" #!(hhh) ou  ^[hhh]
     reconhecido = re.search(regra, arranjo)
     return bool(reconhecido)

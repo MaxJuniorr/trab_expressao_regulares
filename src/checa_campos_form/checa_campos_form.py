@@ -1,7 +1,8 @@
-import re
+from src.common.gera_verificador import verificador
 
 
-def validar_nome(nome: str) -> bool:
+@verificador
+def validar_nome() -> bool:
     """Verifica se o nome analisado está dentro das regras de produção.
 
     Regras
@@ -12,12 +13,11 @@ def validar_nome(nome: str) -> bool:
     - A primeira letra de cada nome deve ser maiúscula
     """
 
-    regra = r"([A-Z][a-z]*)\s([A-Z][a-z]*\s)?[A-Z][a-z]*"
-    match = re.search(regra, nome)
-    return bool(match)
+    return r"([A-Z][a-z]*)\s([A-Z][a-z]*\s)?[A-Z][a-z]*"
 
 
-def validar_email(email: str) -> bool:
+@verificador
+def validar_email() -> bool:
     """Verifica se o endereço de email analisado está dentro das
     regras de produção.
 
@@ -32,12 +32,12 @@ def validar_email(email: str) -> bool:
         entre o símbolo '@' e a subcadeia '.com.br' ou a subcadeia '.br'
     """
     
-    regra = r"[a-z]+@[a-z]+(\.com)?\.br"
-    match = re.search(regra, email)
-    return bool(match)
+    return r"[a-z]+@[a-z]+(\.com)?\.br"
 
 
-def validar_senha(senha: str) -> bool:
+
+@verificador
+def validar_senha() -> bool:
     """Verifica se a senha analisada obedece às regras de produção.
     
     Regras
@@ -56,12 +56,11 @@ def validar_senha(senha: str) -> bool:
     #                   essas regras.
     #                   Isso evita o match parcial das 8 primeiras
     #                   ocorrências.
-    regra = r"^(?=.*[A-Z])(?=.*\d)\w{8}$"
-    match = re.search(regra, senha)
-    return bool(match)
+    return r"^(?=.*[A-Z])(?=.*\d)\w{8}$"
 
 
-def validar_cpf(cpf: str) -> bool:
+@verificador
+def validar_cpf() -> bool:
     """Verifica se o número de cpf analisado está dentro das regras de
     produção.
     
@@ -73,12 +72,11 @@ def validar_cpf(cpf: str) -> bool:
       Ex: 'nnn.nnn.nnn-nn', onde n é um numeral
     """
     
-    regra = r"(\d{3}\.){2}\d{3}\-\d{2}"
-    match = re.search(regra, cpf)
-    return bool(match)
+    return r"(\d{3}\.){2}\d{3}\-\d{2}"
 
 
-def validar_telefone(telefone: str) -> bool:
+@verificador
+def validar_telefone() -> bool:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 
@@ -101,12 +99,11 @@ def validar_telefone(telefone: str) -> bool:
     #                        de quadro digitos, seguido de um hífen
     #                        opcional, seguido de mais quatro dígitos, e
     #                        deve encerrar a cadeia neste ponto.
-    regra = r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
-    match = re.search(regra, telefone)
-    return bool(match)
+    return r"^((\d{2}(?!.*\-.*))|(\(\d{2}\)))\s9\d{4}-?\d{4}$"
 
 
-def validar_datetime(datetime: str) -> bool:
+@verificador
+def validar_datetime() -> bool:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 
@@ -114,12 +111,11 @@ def validar_datetime(datetime: str) -> bool:
     - Sentenças devem ter o formato dd/mm/aaaa hh:mm:ss,
     onde d, m, a, h, m, s são numerais
     """
-    regra = r"^(\d\d/){2}\d{4} (\d\d:){2}\d{2}$"
-    match = re.search(regra, datetime)
-    return bool(match)
+    return r"^(\d\d/){2}\d{4} (\d\d:){2}\d{2}$"
 
 
-def validar_numero(numero: str) -> bool:
+@verificador
+def validar_numero() -> bool:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 
@@ -132,6 +128,4 @@ def validar_numero(numero: str) -> bool:
       parte fracionária
     - Caso possuam um separador, após o separador seguirá um numeral
     """
-    regra = r"^[+-]?\d+(\.\d+)?$"
-    match = re.search(regra, numero)
-    return bool(match)
+    return r"^[+-]?\d+(\.\d+)?$"

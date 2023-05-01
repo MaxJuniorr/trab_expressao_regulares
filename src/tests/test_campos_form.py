@@ -1,5 +1,5 @@
 from src.checa_campos_form import checa_campos_form
-from src.common import helper
+from src.common import gera_verificador
 
 
 #### TESTES NOME ####
