@@ -2,7 +2,7 @@ from src.common.gera_verificador import verificador
 
 
 @verificador
-def validar_nome() -> bool:
+def validar_nome() -> str:
     """Verifica se o nome analisado está dentro das regras de produção.
 
     Regras
@@ -17,7 +17,7 @@ def validar_nome() -> bool:
 
 
 @verificador
-def validar_email() -> bool:
+def validar_email() -> str:
     """Verifica se o endereço de email analisado está dentro das
     regras de produção.
 
@@ -31,13 +31,12 @@ def validar_email() -> bool:
     - Endereços devem conter pelo menos uma letra minúscula 
         entre o símbolo '@' e a subcadeia '.com.br' ou a subcadeia '.br'
     """
-    
+
     return r"[a-z]+@[a-z]+(\.com)?\.br"
 
 
-
 @verificador
-def validar_senha() -> bool:
+def validar_senha() -> str:
     """Verifica se a senha analisada obedece às regras de produção.
     
     Regras
@@ -45,7 +44,7 @@ def validar_senha() -> bool:
     - Senhas devem conter pelo menos uma letra maiúsula e um número
     - Senhas devem ter o comprimento mínimo de 8 caracteres
     """
-    
+
     # Explicação do regex:
     # (?=.*[A-Z])   -> positive lookaround para encontrar pelo menos
     #                   uma letra maiúscula
@@ -60,7 +59,7 @@ def validar_senha() -> bool:
 
 
 @verificador
-def validar_cpf() -> bool:
+def validar_cpf() -> str:
     """Verifica se o número de cpf analisado está dentro das regras de
     produção.
     
@@ -71,12 +70,12 @@ def validar_cpf() -> bool:
         
       Ex: 'nnn.nnn.nnn-nn', onde n é um numeral
     """
-    
+
     return r"(\d{3}\.){2}\d{3}\-\d{2}"
 
 
 @verificador
-def validar_telefone() -> bool:
+def validar_telefone() -> str:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 
@@ -103,7 +102,7 @@ def validar_telefone() -> bool:
 
 
 @verificador
-def validar_datetime() -> bool:
+def validar_datetime() -> str:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 
@@ -115,7 +114,7 @@ def validar_datetime() -> bool:
 
 
 @verificador
-def validar_numero() -> bool:
+def validar_numero() -> str:
     """Verifica se o número de telefone está dentro das regras de
     produção.
 

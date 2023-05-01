@@ -32,12 +32,3 @@ def verificador(regra: Callable[[], str]) -> Callable[[str], bool]:
         return bool(match)
     
     return verifica
-
-def main():
-    # Exemplo: Criando um reconhecedor de emails
-    email = verificador(r"[a-z]+@[a-z]+(\.com)?\.br")
-    # Aplicando o reconhecedor
-    print(email('aluno@ufpa.br'))
-
-if __name__ == '__main__':
-    main()
