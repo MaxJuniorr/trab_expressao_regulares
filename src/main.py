@@ -1,5 +1,4 @@
-from arranjos_familiares import checa_arranjos_familiares, gerador_arranjos
-from src import checa_campos_form
+from checa_campos_form import checa_campos_form
 
 
 print("""\
@@ -30,7 +29,7 @@ if funcionalidade == 1:
 
     print("Escolha uma opção: ")
     for numero, opcao in opcoes.items():
-        print(f"{numero} - {str(opcao)}") # opcao.__name__
+        print(f"{numero} - {opcao.__name__}") #
     escolha = opcoes[input("Número escolhido: ")]
 
     # verificador = Verificador(escolha)
