@@ -219,6 +219,7 @@ def mais_novo_h(cadeia: str) -> str:
 
     if cadeia[-1] == 'h':
         return cadeia, True
+    
     cadeia = cadeia[:-1] + 'h'
     return cadeia, False
 
@@ -296,14 +297,19 @@ def casal_ultimo(cadeia: str) -> str:
 # [WARNING] Prioridade
 def filhos_alternados(cadeia: str) -> str:
     """Retorna uma string em que os filhos são alternados entre h e m."""
+    if 'hh' not in cadeia and 'mm' not in cadeia:
+        return cadeia, True
+
     nova_cadeia = []
     casal = random.choice(('hm', 'mh'))
     alvo = 0
     for _ in cadeia:
         nova_cadeia.append(casal[alvo])
         alvo = 1 if alvo == 0 else 0
-      
-    return "".join(nova_cadeia), True
+
+    x = random.choice((0,1))
+    
+    return "".join(nova_cadeia) + casal[1]*x, False
 
 
 # [NOTE] Testar isso
@@ -366,11 +372,47 @@ def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais
                     base = regra_limites[i](base, int_params[i])
 
         validador = 0
+        teste = 1
         while validador != 1:
+            print("teste: ", teste)
             validador = 1
             for regra in regras_prole:
-                base = regra(base)[0]
-                validador *= regra(base)[1]
+                resultado = regra(base)
+                base = resultado[0]
+                validador *= resultado[1]
+            teste += 1
         return regra_pais() + base
     
     return gerar_arranjo
+
+
+regras_pais = (
+        ("Casais Héterossexuais", criar_casais_hetero),
+        ("Casais Homossexuais", criar_casais_homo),
+        ("Qualquer número de pais de qualquer sexo", criar_nsais_platonico)
+    )
+
+regras_prole = (
+        ("A prole deve ter tamanho mínimo de 6", floor6_prole),
+        ("A prole deve ter pelo menos <x> homens", floor_h),
+        ("A prole deve ter pelo menos <x> mulheres", floor_m),
+        ("A prole deve ter no máximo <x> homens", ceil_h),
+        ("A prole deve ter no máximo <x> mulheres", ceil_m),
+        ("A prole deve ter um número ímpar de homens", impar_h),
+        ("A prole deve ter um número ímpar de mulheres", impar_m),
+        ("A prole deve ter um número par de homens", par_h),
+        ("A prole deve ter um número par de mulheres", par_m),
+        ("O filho mais novo deve ser homem", mais_novo_h),
+        ("O filho mais novo deve ser mulher", mais_novo_m),
+        ("O filho mais velho deve ser homem", mais_velho_h),
+        ("O filho mais velho deve ser mulher", mais_velho_m),
+        ("Os dois primeiros filhos devem ser um casal", casal_primeiro),
+        ("Os dois últimos filhos devem ser um casal", casal_ultimo),
+        ("A prole deve ser ordenada com sexo alternado", filhos_alternados),
+        ("Não devem haver homens consecutivos na prole", nao_filhos_h_consecutivos),
+        ("Não devem haver mulheres consecutivas na prole", nao_filhos_m_consecutivos),
+        ("Os três filhos mais novos da prole não podem ser homens", nao_ultimos3_h_consecutivos)
+    )
+
+regras_pais_dict = {y:x for x,y in zip(regras_pais, range(1,len(regras_pais)+1))}
+regras_prole_dict = {y:x for x,y in zip(regras_prole, range(1,len(regras_prole)+1))}

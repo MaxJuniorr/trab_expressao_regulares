@@ -386,3 +386,14 @@ def test_validar_arranjo_golf_12() -> None:
     y = 1
     arranjo = "H"
     assert checa_arranjos_familiares.validar_arranjo_golf(arranjo, x, y)
+
+
+# teste de força para caso ainda queria testar (deve ser apagado no final do projeto)
+# print("=TESTE DE FORÇA=")
+# for i in range(1000000):
+#     cadeia = letra_d()
+#     teste = "Cadeia aceita!" if ch.validar_arranjo_delta(cadeia) else "Cadeia recusada!"
+#     if teste == "Cadeia recusada!":
+#         print("Cadeia gerada: ", cadeia)
+#         print("Verificando cadeia gerada: ", teste)
+#         break
