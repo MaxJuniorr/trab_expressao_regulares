@@ -36,106 +36,113 @@ def floor6_prole(cadeia: str) -> str:
     return cadeia + ''.join(random.choices('hm', k=6-tam)), False
 
 # funções limite
-def floor_h(cadeia: str, n: int, modificar: bool = None, na: int = None) -> str:
-    """Retorna uma string com pelo menos n 'h's."""
+def floor_h(n: int):
+    def floor_h(cadeia: str, modificar: bool = None, na: int = None) -> str:
+        """Retorna uma string com pelo menos n 'h's."""
 
-    #Resolvendo um limite que já veio anteriormente
-    if not(modificar == None and na == None) and len(cadeia) < n+na:
-        cadeia = "m"*(n+na)
+        #Resolvendo um limite que já veio anteriormente
+        if not(modificar == None and na == None) and len(cadeia) < n+na:
+            cadeia = "m"*(n+na)
+            i = 0
+            while i < n:
+                indice = random.randint(0, len(cadeia) - 1)
+                if cadeia[indice] != "h":
+                    cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
+                    i += 1
+            return cadeia
+
+        # resolver problema com len(cadeia) < n ocorre loop infinito
+        if len(cadeia) <= n:
+            return ''.join(random.choices('h', k=n))
+        
+        
+        qtd = cadeia.count('h')
+        controle = n - qtd
+
+        if controle <= 0:
+            return cadeia
+
         i = 0
-        while i < n:
+        while i < controle:
             indice = random.randint(0, len(cadeia) - 1)
             if cadeia[indice] != "h":
                 cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
                 i += 1
         return cadeia
+    return floor_h
 
-    # resolver problema com len(cadeia) < n ocorre loop infinito
-    if len(cadeia) <= n:
-        return ''.join(random.choices('h', k=n))
-    
-    
-    qtd = cadeia.count('h')
-    controle = n - qtd
+def floor_m(n: int):
+    def floor_m(cadeia: str, modificar: bool = None, na: int = None) -> str:
+        """Retorna uma string com pelo menos n 'm's."""
 
-    if controle <= 0:
-        return cadeia
-
-    i = 0
-    while i < controle:
-        indice = random.randint(0, len(cadeia) - 1)
-        if cadeia[indice] != "h":
-            cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
-            i += 1
-    return cadeia
+        #Resolvendo um limite que já veio anteriormente
+        if not(modificar == None and na == None) and len(cadeia) < n+na:
+            cadeia = "h"*(n+na)
+            i = 0
+            while i < n:
+                indice = random.randint(0, len(cadeia) - 1)
+                if cadeia[indice] != "m":
+                    cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
+                    i += 1
+            return cadeia
 
 
-def floor_m(cadeia: str, n: int, modificar: bool = None, na: int = None) -> str:
-    """Retorna uma string com pelo menos n 'm's."""
+        # resolver problema com len(cadeia) < n ocorre loop infinito
+        if len(cadeia) <= n:
+            return ''.join(random.choices('m', k=n))
+        
+        qtd = cadeia.count('m')
+        controle = n - qtd
 
-    #Resolvendo um limite que já veio anteriormente
-    if not(modificar == None and na == None) and len(cadeia) < n+na:
-        cadeia = "h"*(n+na)
+        if controle <= 0:
+            return cadeia
+
         i = 0
-        while i < n:
+        while i < controle:
             indice = random.randint(0, len(cadeia) - 1)
             if cadeia[indice] != "m":
                 cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
                 i += 1
         return cadeia
-
-
-    # resolver problema com len(cadeia) < n ocorre loop infinito
-    if len(cadeia) <= n:
-        return ''.join(random.choices('m', k=n))
-    
-    qtd = cadeia.count('m')
-    controle = n - qtd
-
-    if controle <= 0:
-        return cadeia
-
-    i = 0
-    while i < controle:
-        indice = random.randint(0, len(cadeia) - 1)
-        if cadeia[indice] != "m":
-            cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
-            i += 1
-    return cadeia
+    return floor_m
 
 #A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
-def ceil_h(cadeia: str, n: int) -> str:
-    """Retorna uma string com no máximo n 'h's."""
+def ceil_h(n: int):
+    def ceil_h(cadeia: str) -> str:
+        """Retorna uma string com no máximo n 'h's."""
 
-    qtd = cadeia.count('h')
-    if qtd <= n:
-        return cadeia, True
+        qtd = cadeia.count('h')
+        if qtd <= n:
+            return cadeia, True
 
-    controle = qtd - n
-    i = 0
-    while i < controle:
-        indice = random.randint(0, len(cadeia) - 1)
-        if cadeia[indice] != "m":
-            cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
-            i += 1
-    return cadeia, False
+        controle = qtd - n
+        i = 0
+        while i < controle:
+            indice = random.randint(0, len(cadeia) - 1)
+            if cadeia[indice] != "m":
+                cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
+                i += 1
+        return cadeia, False
+    return ceil_h
 
 #A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
-def ceil_m(cadeia: str, n: int) -> str:
-    """Retorna uma string com no máximo n 'm's."""
-    
-    qtd = cadeia.count('m')
-    if qtd <= n:
-        return cadeia, True
+def ceil_m(n: int):
+    def ceil_m(cadeia: str) -> str:
+        """Retorna uma string com no máximo n 'm's."""
+        
+        qtd = cadeia.count('m')
+        if qtd <= n:
+            return cadeia, True
 
-    controle = qtd - n
-    i = 0
-    while i < controle:
-        indice = random.randint(0, len(cadeia) - 1)
-        if cadeia[indice] != "h":
-            cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
-            i += 1
-    return cadeia, False
+        controle = qtd - n
+        i = 0
+        while i < controle:
+            indice = random.randint(0, len(cadeia) - 1)
+            if cadeia[indice] != "h":
+                cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
+                i += 1
+        return cadeia, False
+    return ceil_m
 
 def impar_h(cadeia: str) -> str:
     """Retorna uma string com uma quantidade impar de 'h's."""
