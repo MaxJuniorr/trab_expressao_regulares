@@ -36,12 +36,12 @@ def floor6_prole(cadeia: str) -> str:
     return cadeia + ''.join(random.choices('hm', k=6-tam)), False
 
 # funções limite
-def floor_h(n: int):
-    def floor_h(cadeia: str, modificar: bool = None, na: int = None) -> str:
+def floor_h_out(n: int):
+    def floor_h(cadeia: str, na: int = None) -> str:
         """Retorna uma string com pelo menos n 'h's."""
 
         #Resolvendo um limite que já veio anteriormente
-        if not(modificar == None and na == None) and len(cadeia) < n+na:
+        if na != None and len(cadeia) < n+na:
             cadeia = "m"*(n+na)
             i = 0
             while i < n:
@@ -49,18 +49,18 @@ def floor_h(n: int):
                 if cadeia[indice] != "h":
                     cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
                     i += 1
-            return cadeia
+            return cadeia, None
 
         # resolver problema com len(cadeia) < n ocorre loop infinito
         if len(cadeia) <= n:
-            return ''.join(random.choices('h', k=n))
+            return ''.join(random.choices('h', k=n)), n
         
         
         qtd = cadeia.count('h')
         controle = n - qtd
 
         if controle <= 0:
-            return cadeia
+            return cadeia, n
 
         i = 0
         while i < controle:
@@ -68,15 +68,15 @@ def floor_h(n: int):
             if cadeia[indice] != "h":
                 cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
                 i += 1
-        return cadeia
+        return cadeia, n
     return floor_h
 
-def floor_m(n: int):
-    def floor_m(cadeia: str, modificar: bool = None, na: int = None) -> str:
+def floor_m_out(n: int):
+    def floor_m(cadeia: str, na: int = None) -> str:
         """Retorna uma string com pelo menos n 'm's."""
 
         #Resolvendo um limite que já veio anteriormente
-        if not(modificar == None and na == None) and len(cadeia) < n+na:
+        if na != None and len(cadeia) < n+na:
             cadeia = "h"*(n+na)
             i = 0
             while i < n:
@@ -84,18 +84,18 @@ def floor_m(n: int):
                 if cadeia[indice] != "m":
                     cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
                     i += 1
-            return cadeia
+            return cadeia, None
 
 
         # resolver problema com len(cadeia) < n ocorre loop infinito
         if len(cadeia) <= n:
-            return ''.join(random.choices('m', k=n))
+            return ''.join(random.choices('m', k=n)), n
         
         qtd = cadeia.count('m')
         controle = n - qtd
 
         if controle <= 0:
-            return cadeia
+            return cadeia, n
 
         i = 0
         while i < controle:
@@ -103,17 +103,17 @@ def floor_m(n: int):
             if cadeia[indice] != "m":
                 cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
                 i += 1
-        return cadeia
+        return cadeia, n
     return floor_m
 
 #A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
-def ceil_h(n: int):
+def ceil_h_out(n: int):
     def ceil_h(cadeia: str) -> str:
         """Retorna uma string com no máximo n 'h's."""
 
         qtd = cadeia.count('h')
         if qtd <= n:
-            return cadeia, True
+            return cadeia, 0
 
         controle = qtd - n
         i = 0
@@ -122,17 +122,17 @@ def ceil_h(n: int):
             if cadeia[indice] != "m":
                 cadeia = cadeia[:indice] + "m" + cadeia[indice + 1:]
                 i += 1
-        return cadeia, False
+        return cadeia, 0
     return ceil_h
 
 #A priori, estou deduzindo que as cadeias de ceil não precisam de modificação
-def ceil_m(n: int):
+def ceil_m_out(n: int):
     def ceil_m(cadeia: str) -> str:
         """Retorna uma string com no máximo n 'm's."""
         
         qtd = cadeia.count('m')
         if qtd <= n:
-            return cadeia, True
+            return cadeia, 0
 
         controle = qtd - n
         i = 0
@@ -141,7 +141,7 @@ def ceil_m(n: int):
             if cadeia[indice] != "h":
                 cadeia = cadeia[:indice] + "h" + cadeia[indice + 1:]
                 i += 1
-        return cadeia, False
+        return cadeia, 0
     return ceil_m
 
 def impar_h(cadeia: str) -> str:
@@ -362,7 +362,7 @@ def disjuncao(*opcoes) -> str:
     return interior
     
 
-def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero, regra_limites: tuple =None, int_params: tuple =None) -> Callable[[], str]:
+def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais_hetero, regra_limites: tuple = None) -> Callable[[], str]:
     """Retorna uma função que gera strings que satisfazem todas as
     regras passadas.
     """
@@ -371,23 +371,22 @@ def gerador_arranjo(*regras_prole: Callable[[str], str], regra_pais=criar_casais
         """Retorna uma string aleatória."""
         base = _iniciar_prole()
         
-        if regra_limites and int_params:
+        if regra_limites:
             for i in range(len(regra_limites)):
                 if i == 1:
-                    base = regra_limites[i](base, int_params[i], True, int_params[i-1])
+                    base = regra_limites[i](base, na)[0]
                 else:
-                    base = regra_limites[i](base, int_params[i])
+                    resultado = regra_limites[i](base)
+                    base = resultado[0]
+                    na = resultado[1]
 
         validador = 0
-        teste = 1
         while validador != 1:
-            print("teste: ", teste)
             validador = 1
             for regra in regras_prole:
                 resultado = regra(base)
                 base = resultado[0]
                 validador *= resultado[1]
-            teste += 1
         return regra_pais() + base
     
     return gerar_arranjo
@@ -401,10 +400,10 @@ regras_pais = (
 
 regras_prole = (
         ("A prole deve ter tamanho mínimo de 6", floor6_prole),
-        ("A prole deve ter pelo menos <x> homens", floor_h),
-        ("A prole deve ter pelo menos <x> mulheres", floor_m),
-        ("A prole deve ter no máximo <x> homens", ceil_h),
-        ("A prole deve ter no máximo <x> mulheres", ceil_m),
+        ("A prole deve ter pelo menos <x> homens", floor_h_out),
+        ("A prole deve ter pelo menos <x> mulheres", floor_m_out),
+        ("A prole deve ter no máximo <x> homens", ceil_h_out),
+        ("A prole deve ter no máximo <x> mulheres", ceil_m_out),
         ("A prole deve ter um número ímpar de homens", impar_h),
         ("A prole deve ter um número ímpar de mulheres", impar_m),
         ("A prole deve ter um número par de homens", par_h),

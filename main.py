@@ -44,18 +44,31 @@ elif funcionalidade == 2:
 
 elif funcionalidade == 3:
 
+    regras_limites = ("2", "3", "4", "5")
+    lista_prole = []
+    lista_limites = []
+
     for chave, valor in ge.regras_pais_dict.items():
         print(f"{chave}: {valor[0]}")
-    regra_pais = int(input("Insira o número correspondente à regra desejada: "))
+    regra = int(input("Insira o número correspondente à regra desejada: "))
+    if regra == 3:
+        x, y = input("Insira a quantidade mínima e máxima de pais. Ex: 2 4. :").split()
+        regra_pai = ge.regras_pais_dict[regra][1](int(x), int(y))
+    else:
+        regra_pai = ge.regras_pais_dict[regra][1]
     
     for chave, valor in ge.regras_prole_dict.items():
         print(f"{chave}: {valor[0]}")
     regras = input("Insira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
 
-    
-    lista = [ge.regras_prole[int(i)-1][1] for i in regras]
+    for i in regras:
+        if i not in regras_limites:
+            lista_prole.append(ge.regras_prole[int(i)-1][1])
+        else:
+            n = int(input(f"Insira o <x> referente à regra {ge.regras_prole_dict[int(i)][0]}: "))
+            lista_limites.append(ge.regras_prole[int(i)-1][1](n))
 
-    gerador = ge.gerador_arranjo(*lista ,regra_pais=ge.regras_pais_dict[regra_pais][1])
+    gerador = ge.gerador_arranjo(*lista_prole ,regra_pais=regra_pai, regra_limites=tuple(lista_limites))
     for i in range(10):
         print("Arranjo gerado: ", gerador())
 else:

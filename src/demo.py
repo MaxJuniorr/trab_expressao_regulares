@@ -3,9 +3,9 @@ import src.arranjos_familiares.checa_arranjos_familiares as ch
 
 
 def executar_demo() -> None:
-    regra_a1 = ge.gerador_arranjo(regra_limites=(ge.floor_m,),int_params=(2,),regra_pais=ge.criar_casais_hetero)
-    regra_a2 = ge.gerador_arranjo(regra_limites=(ge.floor_h,),int_params=(1,),regra_pais=ge.criar_casais_hetero)
-    regra_a3 = ge.gerador_arranjo(regra_limites=(ge.floor_h, ge.floor_m),int_params=(2, 1),regra_pais=ge.criar_casais_hetero)
+    regra_a1 = ge.gerador_arranjo(regra_limites=(ge.floor_m_out(2),),regra_pais=ge.criar_casais_hetero)
+    regra_a2 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(1),),regra_pais=ge.criar_casais_hetero)
+    regra_a3 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(2), ge.floor_m_out(1)),regra_pais=ge.criar_casais_hetero)
 
     letra_a = ge.disjuncao(regra_a1, regra_a2, regra_a3)
     letra_a.__name__ = "letra_a"
