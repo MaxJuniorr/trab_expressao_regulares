@@ -90,6 +90,7 @@ def validar_arranjo_foxtrot(arranjo: str) -> bool:
     """Casais homossexuais mais velhos que os filhos, com
     qualquer quantidade de filhos homens e mulheres, mas
     que não tiveram dois filhos homens consecutivos.
+
     Args:
         arranjo {str} -- um arranjo familiar
     Retorna:

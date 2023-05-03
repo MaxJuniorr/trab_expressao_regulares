@@ -35,6 +35,7 @@ if funcionalidade == 1:
     for numero, opcao in opcoes.items():
         print(f"{numero} - {opcao.__name__}")
     escolha = opcoes[input("Número escolhido: ")]
+    print(escolha.__doc__)
     entrada = input("Valor a ser verificado: ")
     resultado = escolha(entrada)
     print(f"{entrada} é {'valido(a)' if resultado else 'invalido(a)'}")
@@ -68,7 +69,7 @@ elif funcionalidade == 3:
             n = int(input(f"Insira o <x> referente à regra {ge.regras_prole_dict[int(i)][0]}: "))
             lista_limites.append(ge.regras_prole[int(i)-1][1](n))
 
-    gerador = ge.gerador_arranjo(*lista_prole ,regra_pais=regra_pai, regra_limites=tuple(lista_limites))
+    gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
     for i in range(10):
         print("Arranjo gerado: ", gerador())
 else:

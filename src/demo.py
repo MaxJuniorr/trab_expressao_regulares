@@ -3,21 +3,21 @@ import src.arranjos_familiares.checa_arranjos_familiares as ch
 
 
 def executar_demo() -> None:
-    regra_a1 = ge.gerador_arranjo(regra_limites=(ge.floor_m_out(2),),regra_pais=ge.criar_casais_hetero)
-    regra_a2 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(1),),regra_pais=ge.criar_casais_hetero)
-    regra_a3 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(2), ge.floor_m_out(1)),regra_pais=ge.criar_casais_hetero)
+    regra_a1 = ge.gerador_arranjo(regra_limites=(ge.floor_m_out(2),), regra_pais=ge.criar_casais_hetero)
+    regra_a2 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(1),), regra_pais=ge.criar_casais_hetero)
+    regra_a3 = ge.gerador_arranjo(regra_limites=(ge.floor_h_out(2), ge.floor_m_out(1)), regra_pais=ge.criar_casais_hetero)
 
     letra_a = ge.disjuncao(regra_a1, regra_a2, regra_a3)
     letra_a.__name__ = "letra_a"
-    letra_b = ge.gerador_arranjo(ge.impar_m ,regra_pais=ge.criar_casais_hetero)
+    letra_b = ge.gerador_arranjo(ge.impar_m, regra_pais=ge.criar_casais_hetero)
     letra_b.__name__ = "letra_b"
-    letra_c = ge.gerador_arranjo(ge.mais_velho_m, ge.mais_novo_h ,regra_pais=ge.criar_casais_hetero)
+    letra_c = ge.gerador_arranjo(ge.mais_velho_m, ge.mais_novo_h, regra_pais=ge.criar_casais_hetero)
     letra_c.__name__ = "letra_c"
-    letra_d = ge.gerador_arranjo(ge.floor6_prole, ge.casal_primeiro, ge.casal_ultimo ,regra_pais=ge.criar_casais_homo)
+    letra_d = ge.gerador_arranjo(ge.floor6_prole, ge.casal_primeiro, ge.casal_ultimo, regra_pais=ge.criar_casais_homo)
     letra_d.__name__ = "letra d"
-    letra_e = ge.gerador_arranjo(ge.filhos_alternados ,regra_pais=ge.criar_casais_homo)
+    letra_e = ge.gerador_arranjo(ge.filhos_alternados, regra_pais=ge.criar_casais_homo)
     letra_e.__name__ = "letra e"
-    letra_f = ge.gerador_arranjo(ge.nao_filhos_h_consecutivos ,regra_pais=ge.criar_casais_homo)
+    letra_f = ge.gerador_arranjo(ge.nao_filhos_h_consecutivos, regra_pais=ge.criar_casais_homo)
     letra_f.__name__ = "letra f"
     letra_g = lambda: print("doido")
     letra_g.__name__ = "letra g"
