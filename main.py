@@ -3,151 +3,177 @@ import src.arranjos_familiares.gerador_arranjos as ge
 from src import demo
 import os
 
-
-os.system("clear")
-print("""
-        _________________________________________  
-        ((                                     ))
-        )) Trabalho sobre expressões regulares (( 
-        ((                                     ))
-        -----------------------------------------  
-""")
-      
-print("""FUNCIONALIDADES:
-
-Nº - FUNCIONALIDADE
-1  - Máscara de validação de campos de um formulário
-2  - Gerar arranjos familiares (Demonstração da 2ª questão)
-3  - Gerar arranjos familiares (Implementação customizável)
-""")
-
-funcionalidade = int(input("Escolha uma funcionalidade para proceguir.\n"
-                           "Nº: "))
-
-if funcionalidade == 1:
-    nome = checa_campos_form.validar_nome
-    email = checa_campos_form.validar_email
-    senha = checa_campos_form.validar_senha
-    cpf = checa_campos_form.validar_cpf
-    telefone = checa_campos_form.validar_telefone
-    datetime = checa_campos_form.validar_datetime
-    numero = checa_campos_form.validar_numero
-    
-    opcoes = {
-        "1": nome,
-        "2": email,
-        "3": senha,
-        "4": cpf,
-        "5": telefone,
-        "6": datetime,
-        "7": numero,
-    }
-    # [TODO] - FORMATAR OUTPUT
+n = "3"
+while n == "3":
     os.system("clear")
     print("""
-        _________________________________________  
-        ((                                     ))
-        )) Trabalho sobre expressões regulares (( 
-        ((                                     ))
-        -----------------------------------------  
-    
---> Máscara de validação de campos de um formulário
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
     """)
+        
     print("""FUNCIONALIDADES:
 
+    Nº - FUNCIONALIDADE
+    1  - Máscara de validação de campos de um formulário
+    2  - Gerar arranjos familiares (Demonstração da 2ª questão)
+    3  - Gerar arranjos familiares (Implementação customizável)
+    """)
+
+    funcionalidade = input("Escolha uma funcionalidade para prosseguir.\n"
+                            "Nº: ")
+
+    if funcionalidade == "1":
+        nome = checa_campos_form.validar_nome
+        email = checa_campos_form.validar_email
+        senha = checa_campos_form.validar_senha
+        cpf = checa_campos_form.validar_cpf
+        telefone = checa_campos_form.validar_telefone
+        datetime = checa_campos_form.validar_datetime
+        numero = checa_campos_form.validar_numero
+        
+        opcoes = {
+            "1": nome,
+            "2": email,
+            "3": senha,
+            "4": cpf,
+            "5": telefone,
+            "6": datetime,
+            "7": numero,
+        }
+        n = "2"
+        while n == "2":
+            os.system("clear")
+            print("""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
+        
+    --> Máscara de validação de campos de um formulário
+            """)
+            print("""FUNCIONALIDADES:
+
 Nº - FUNCIONALIDADE""")
-    for numero, opcao in opcoes.items():
-        print(f"{numero}  - {opcao.__name__}")
-    escolha = opcoes[input("\nEscolha uma funcionalidade para proceguir.\n"
-                            "Nº: ")]
-    
-    os.system("clear")
-    print(f"""
-        _________________________________________  
-        ((                                     ))
-        )) Trabalho sobre expressões regulares (( 
-        ((                                     ))
-        -----------------------------------------  
-    
---> Máscara de validação de campos de um formulário
-    --> {escolha.__name__}
-    """)
+            for numero, opcao in opcoes.items():
+                print(f"{numero}  - {opcao.__name__}")
+            func = input("\nEscolha uma funcionalidade para proceguir.\n"
+                                    "Nº: ")
+            if func in opcoes.keys():
 
-    print(escolha.__doc__)
-    entrada = input("Cadeia: ")
-    resultado = escolha(entrada)
+                escolha = opcoes[func]
+                n = "1"
+                while n == "1":
+                    os.system("clear")
+                    print(f"""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
+        
+    --> Máscara de validação de campos de um formulário
+        --> {escolha.__name__}
+                    """)
 
-    os.system("clear")
-    print(f"""
-        _________________________________________  
-        ((                                     ))
-        )) Trabalho sobre expressões regulares (( 
-        ((                                     ))
-        -----------------------------------------  
-    
---> Máscara de validação de campos de um formulário
-    --> {escolha.__name__}
-    """)
+                    print(escolha.__doc__)
+                    entrada = input("Cadeia: ")
+                    resultado = escolha(entrada)
 
-    print(f"A cadeia '{entrada}' é {'valida' if resultado else 'invalida'}")
+                    os.system("clear")
+                    print(f"""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
+        
+    --> Máscara de validação de campos de um formulário
+        --> {escolha.__name__}
+                    """)
 
-    n = input("""OPÇÕES:
-    1 - Testar outra cadeia
-    2 - Escolher outra funcionalidade de "Máscara de validação de campos de um formulário"
-    3 - Voltar ao menu principal
-    """)
+                    print(f"A cadeia '{entrada}' é {'valida!' if resultado else 'invalida!'}")
 
-elif funcionalidade == 2:
-    demo.executar_demo()
+                    n = "5"
+                    while n not in ("1", "2", "3", "4"):
+                        n = input("""
+                OPÇÕES:
+                1 - Testar outra cadeia
+                2 - Escolher outra funcionalidade
+                3 - Voltar ao menu principal
+                4 - Sair
+                
+                Nº: """)
+                        if n not in ("1", "2", "3", "4"):
+                            os.system("clear")
+                            print(f"""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
+        
+    --> Máscara de validação de campos de um formulário
+        --> {escolha.__name__}
+                            """)
+                            print("Opção inválida! Por favor, tente novamente.")
+            else:
+                input("\nOpção inválida! Por favor, tente novamente.\nPressione ENTER para continuar.")
+    elif funcionalidade == "2":
+        demo.executar_demo()
 
-elif funcionalidade == 3:
-    print("""\nATENÇÃO: Esta funcionalidade é experimental e pode não funcionar corretamente.
-Combinar regras de maneira ilógica pode gerar absurdos ou loops infinitos.
-Algumas combinações de regras flagrantemente antagônicas não são permitidas.
-Para mais informações, consulte o arquivo README.md""")
-    print("\nEscolha uma regra para os pais: ")
+    elif funcionalidade == "3":
+        print("""\nATENÇÃO: Esta funcionalidade é experimental e pode não funcionar corretamente.
+    Combinar regras de maneira ilógica pode gerar absurdos ou loops infinitos.
+    Algumas combinações de regras flagrantemente antagônicas não são permitidas.
+    Para mais informações, consulte o arquivo README.md""")
+        print("\nEscolha uma regra para os pais: ")
 
-    regras_limites = ("2", "3", "4", "5")
-    lista_prole = []
-    lista_limites = []
+        regras_limites = ("2", "3", "4", "5")
+        lista_prole = []
+        lista_limites = []
 
-    for chave, valor in ge.regras_pais_dict.items():
-        print(f"{chave}: {valor[0]}")
-    regra = int(input("Insira o número correspondente à regra desejada: "))
-    if regra == 3:
-        x, y = input("Insira a quantidade mínima e máxima de pais. Ex: 2 4. :").split()
-        regra_pai = ge.regras_pais_dict[regra][1](int(x), int(y))
-    else:
-        regra_pai = ge.regras_pais_dict[regra][1]
-    
-    for chave, valor in ge.regras_prole_dict.items():
-        print(f"{chave}: {valor[0]}")
-    
-    regras = input("Insira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
-    proibidas = ge.combinacoes_proibidas.items()
-
-    erro = False
-    for regra in proibidas:
-        controle = 0
-        for j in range(2):
-            controle += 1 if str(regra[j]) in regras else 0
-        if controle == 2:
-            erro = True
-            tupla = regra
-            
-    if erro:
-        print("Erro: As regras escolhidas não podem ser usadas juntas. ", tupla)
-        exit()
-    
-    for i in regras:
-        if i not in regras_limites:
-            lista_prole.append(ge.regras_prole[int(i)-1][1])
+        for chave, valor in ge.regras_pais_dict.items():
+            print(f"{chave}: {valor[0]}")
+        regra = int(input("Insira o número correspondente à regra desejada: "))
+        if regra == 3:
+            x, y = input("Insira a quantidade mínima e máxima de pais. Ex: 2 4. :").split()
+            regra_pai = ge.regras_pais_dict[regra][1](int(x), int(y))
         else:
-            n = int(input(f"Insira o <x> referente à regra '{ge.regras_prole_dict[int(i)][0]}': "))
-            lista_limites.append(ge.regras_prole[int(i)-1][1](n))
+            regra_pai = ge.regras_pais_dict[regra][1]
+        
+        for chave, valor in ge.regras_prole_dict.items():
+            print(f"{chave}: {valor[0]}")
+        
+        regras = input("Insira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
+        proibidas = ge.combinacoes_proibidas.items()
 
-    gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
-    for i in range(10):
-        print("Arranjo gerado: ", gerador())
-else:
-    print("Opção inválida")
+        erro = False
+        for regra in proibidas:
+            controle = 0
+            for j in range(2):
+                controle += 1 if str(regra[j]) in regras else 0
+            if controle == 2:
+                erro = True
+                tupla = regra
+                
+        if erro:
+            print("Erro: As regras escolhidas não podem ser usadas juntas. ", tupla)
+            exit()
+        
+        for i in regras:
+            if i not in regras_limites:
+                lista_prole.append(ge.regras_prole[int(i)-1][1])
+            else:
+                n = int(input(f"Insira o <x> referente à regra '{ge.regras_prole_dict[int(i)][0]}': "))
+                lista_limites.append(ge.regras_prole[int(i)-1][1](n))
+
+        gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
+        for i in range(10):
+            print("Arranjo gerado: ", gerador())
+    else:
+        print("\nPrograma encerrado!")
+        n = "4"
