@@ -420,5 +420,19 @@ regras_prole = (
         ("Os três filhos mais novos da prole não podem ser homens", nao_ultimos3_h_consecutivos)
     )
 
+
+combinacoes_proibidas = {
+    6: 8,
+    7: 9,
+    10: 11,
+    12: 13
+}
+
+def checa_proibicao(combinacao: tuple) -> bool:
+    """Retorna True se a combinação de regras é proibida."""
+    if combinacao in combinacoes_proibidas:
+        return True
+    return False
+
 regras_pais_dict = {y:x for x,y in zip(regras_pais, range(1,len(regras_pais)+1))}
 regras_prole_dict = {y:x for x,y in zip(regras_prole, range(1,len(regras_prole)+1))}

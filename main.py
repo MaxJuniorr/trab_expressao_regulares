@@ -4,11 +4,11 @@ from src import demo
 import random
 
 # [TODO] - FORMATAR OUTPUT
-print("""\
-    Escolha a funcionalidade desejada:
-    1: Máscara de validação de campos de um formulário
-    2: Gerar arranjos familiares (Demonstração da 2ª questão)
-    3: Gerar arranjos familiares (Implementação customizável)
+print("""\n\
+Escolha a funcionalidade desejada:
+1: Máscara de validação de campos de um formulário
+2: Gerar arranjos familiares (Demonstração da 2ª questão)
+3: Gerar arranjos familiares (Implementação customizável)
 """)
 funcionalidade = int(input("Sua escolha: "))
 
@@ -44,6 +44,11 @@ elif funcionalidade == 2:
     demo.executar_demo()
 
 elif funcionalidade == 3:
+    print("""\nATENÇÃO: Esta funcionalidade é experimental e pode não funcionar corretamente.
+Combinar regras de maneira ilógica pode gerar absurdos ou loops infinitos.
+Algumas combinações de regras flagrantemente antagônicas não são permitidas.
+Para mais informações, consulte o arquivo README.md""")
+    print("\nEscolha uma regra para os pais: ")
 
     regras_limites = ("2", "3", "4", "5")
     lista_prole = []
@@ -60,13 +65,28 @@ elif funcionalidade == 3:
     
     for chave, valor in ge.regras_prole_dict.items():
         print(f"{chave}: {valor[0]}")
+    
     regras = input("Insira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
+    proibidas = ge.combinacoes_proibidas.items()
 
+    erro = False
+    for regra in proibidas:
+        controle = 0
+        for j in range(2):
+            controle += 1 if str(regra[j]) in regras else 0
+        if controle == 2:
+            erro = True
+            tupla = regra
+            
+    if erro:
+        print("Erro: As regras escolhidas não podem ser usadas juntas. ", tupla)
+        exit()
+    
     for i in regras:
         if i not in regras_limites:
             lista_prole.append(ge.regras_prole[int(i)-1][1])
         else:
-            n = int(input(f"Insira o <x> referente à regra {ge.regras_prole_dict[int(i)][0]}: "))
+            n = int(input(f"Insira o <x> referente à regra '{ge.regras_prole_dict[int(i)][0]}': "))
             lista_limites.append(ge.regras_prole[int(i)-1][1](n))
 
     gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
