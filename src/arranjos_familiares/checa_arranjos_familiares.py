@@ -2,7 +2,7 @@ import re
 
 
 def validar_arranjo_alfa(arranjo: str) -> bool:
-    """Reconhece casais heterossexuais mais velhos que os filhos com
+    """Casais heterossexuais mais velhos que os filhos com
     pelo menos duas filhas mulheres, ou pelo menos um filho homem, ou
     ainda pelo menos dois filhos homens e uma filha mulher.
 
@@ -23,7 +23,7 @@ def validar_arranjo_alfa(arranjo: str) -> bool:
 
 
 def validar_arranjo_beta(arranjo: str) -> bool:
-    """Reconhece Casais heterossexuais mais velhos que os filhos e com 
+    """Casais heterossexuais mais velhos que os filhos e com
     uma quantidade ímpar de filhas mulheres.
     
     Args:
@@ -55,7 +55,7 @@ def validar_arranjo_charlie(arranjo: str) -> bool:
 
 
 def validar_arranjo_delta(arranjo: str) -> bool:
-    """ Reconhece Casais homossexuais mais velhos que os filhos, com
+    """Casais homossexuais mais velhos que os filhos, com
     pelo menos seis filhos, em que os dois primeiros filhos formam
     um casal e os últimos também.
     
@@ -103,8 +103,8 @@ def validar_arranjo_foxtrot(arranjo: str) -> bool:
 
 
 def validar_arranjo_golf(arranjo: str, x: int, y: int) -> bool:
-    """Arranjo de no mínimo x ∈ N e no máximo y ∈ N, com x > 0, y > 0 ,
-    e x ≤ y , de adultos (Hs ou Ms) mais velhos que os filhos, com
+    """Arranjo de no mínimo x ∈ N e no máximo y ∈ N, com x > 0, y > 0,
+    e x ≤ y, de adultos (Hs ou Ms) mais velhos que os filhos, com
     qualquer quantidade de filhos homens e mulheres, mas que os três
     filhos mais novos não foram homens.
 
