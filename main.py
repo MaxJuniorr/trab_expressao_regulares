@@ -1,16 +1,28 @@
 from src.checa_campos_form import checa_campos_form
 import src.arranjos_familiares.gerador_arranjos as ge
 from src import demo
-import random
+import os
 
-# [TODO] - FORMATAR OUTPUT
-print("""\n\
-Escolha a funcionalidade desejada:
-1: Máscara de validação de campos de um formulário
-2: Gerar arranjos familiares (Demonstração da 2ª questão)
-3: Gerar arranjos familiares (Implementação customizável)
+
+os.system("clear")
+print("""
+        _________________________________________  
+        ((                                     ))
+        )) Trabalho sobre expressões regulares (( 
+        ((                                     ))
+        -----------------------------------------  
 """)
-funcionalidade = int(input("Sua escolha: "))
+      
+print("""FUNCIONALIDADES:
+
+Nº - FUNCIONALIDADE
+1  - Máscara de validação de campos de um formulário
+2  - Gerar arranjos familiares (Demonstração da 2ª questão)
+3  - Gerar arranjos familiares (Implementação customizável)
+""")
+
+funcionalidade = int(input("Escolha uma funcionalidade para proceguir.\n"
+                           "Nº: "))
 
 if funcionalidade == 1:
     nome = checa_campos_form.validar_nome
@@ -31,14 +43,59 @@ if funcionalidade == 1:
         "7": numero,
     }
     # [TODO] - FORMATAR OUTPUT
-    print("Escolha uma opção: ")
+    os.system("clear")
+    print("""
+        _________________________________________  
+        ((                                     ))
+        )) Trabalho sobre expressões regulares (( 
+        ((                                     ))
+        -----------------------------------------  
+    
+--> Máscara de validação de campos de um formulário
+    """)
+    print("""FUNCIONALIDADES:
+
+Nº - FUNCIONALIDADE""")
     for numero, opcao in opcoes.items():
-        print(f"{numero} - {opcao.__name__}")
-    escolha = opcoes[input("Número escolhido: ")]
+        print(f"{numero}  - {opcao.__name__}")
+    escolha = opcoes[input("\nEscolha uma funcionalidade para proceguir.\n"
+                            "Nº: ")]
+    
+    os.system("clear")
+    print(f"""
+        _________________________________________  
+        ((                                     ))
+        )) Trabalho sobre expressões regulares (( 
+        ((                                     ))
+        -----------------------------------------  
+    
+--> Máscara de validação de campos de um formulário
+    --> {escolha.__name__}
+    """)
+
     print(escolha.__doc__)
-    entrada = input("Valor a ser verificado: ")
+    entrada = input("Cadeia: ")
     resultado = escolha(entrada)
-    print(f"{entrada} é {'valido(a)' if resultado else 'invalido(a)'}")
+
+    os.system("clear")
+    print(f"""
+        _________________________________________  
+        ((                                     ))
+        )) Trabalho sobre expressões regulares (( 
+        ((                                     ))
+        -----------------------------------------  
+    
+--> Máscara de validação de campos de um formulário
+    --> {escolha.__name__}
+    """)
+
+    print(f"A cadeia '{entrada}' é {'valida' if resultado else 'invalida'}")
+
+    n = input("""OPÇÕES:
+    1 - Testar outra cadeia
+    2 - Escolher outra funcionalidade de "Máscara de validação de campos de um formulário"
+    3 - Voltar ao menu principal
+    """)
 
 elif funcionalidade == 2:
     demo.executar_demo()
