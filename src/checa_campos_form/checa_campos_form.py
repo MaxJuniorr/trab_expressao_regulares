@@ -116,6 +116,7 @@ def validar_datetime() -> str:
     - Sentenças devem ter o formato dd/mm/aaaa hh:mm:ss,
     onde d, m, a, h, m, s são numerais
     """
+
     return r"^(\d\d/){2}\d{4} (\d\d:){2}\d{2}$"
 
 
@@ -134,4 +135,5 @@ def validar_numero() -> str:
       parte fracionária
     - Caso possuam um separador, após o separador seguirá um numeral
     """
+    
     return r"^[+-]?\d+(\.\d+)?$"
