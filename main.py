@@ -78,7 +78,7 @@ Nº - FUNCIONALIDADE""")
             -----------------------------------------  
         
     --> Máscara de validação de campos de um formulário
-        --> {escolha.__name__}
+    --> {escolha.__name__}
                     """)
 
                     print(escolha.__doc__)
@@ -190,7 +190,7 @@ Nº - REGRAS""")
                 for chave, valor in ge.regras_prole_dict.items():
                     print(f"{chave}  - {valor[0]}")
                 
-                regras = input("\nInsira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
+                regras = input("\nInsira os números correspondentes às regras desejadas. Ex: 1 4 5. : ").split()
                 proibidas = ge.combinacoes_proibidas.items()
 
                 erro = False
@@ -252,5 +252,14 @@ Nº - REGRAS""")
                 input("Opção inválida! Por favor, tente novamente. \nPressione ENTER para continuar.")
                 input()
     else:
-        print("\nPrograma encerrado!")
         n = "4"
+os.system("clear")
+print("""
+
+░█████╗░██████╗░██████╗░██╗░██████╗░░█████╗░██████╗░░█████╗░██╗
+██╔══██╗██╔══██╗██╔══██╗██║██╔════╝░██╔══██╗██╔══██╗██╔══██╗██║
+██║░░██║██████╦╝██████╔╝██║██║░░██╗░███████║██║░░██║██║░░██║██║
+██║░░██║██╔══██╗██╔══██╗██║██║░░╚██╗██╔══██║██║░░██║██║░░██║╚═╝
+╚█████╔╝██████╦╝██║░░██║██║╚██████╔╝██║░░██║██████╔╝╚█████╔╝██╗
+░╚════╝░╚═════╝░╚═╝░░╚═╝╚═╝░╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝
+""")
