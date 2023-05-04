@@ -20,6 +20,8 @@ while n == "3":
     1  - Máscara de validação de campos de um formulário
     2  - Gerar arranjos familiares (Demonstração da 2ª questão)
     3  - Gerar arranjos familiares (Implementação customizável)
+
+    (qualquer outra tecla + enter - encerrar o programa)
     """)
 
     funcionalidade = input("Escolha uma funcionalidade para prosseguir.\n"
@@ -126,54 +128,129 @@ Nº - FUNCIONALIDADE""")
         demo.executar_demo()
 
     elif funcionalidade == "3":
-        print("""\nATENÇÃO: Esta funcionalidade é experimental e pode não funcionar corretamente.
+        atencao = """\nATENÇÃO: Esta funcionalidade é experimental e pode não funcionar corretamente.
     Combinar regras de maneira ilógica pode gerar absurdos ou loops infinitos.
     Algumas combinações de regras flagrantemente antagônicas não são permitidas.
-    Para mais informações, consulte o arquivo README.md""")
-        print("\nEscolha uma regra para os pais: ")
-
-        regras_limites = ("2", "3", "4", "5")
-        lista_prole = []
-        lista_limites = []
-
-        for chave, valor in ge.regras_pais_dict.items():
-            print(f"{chave}: {valor[0]}")
-        regra = int(input("Insira o número correspondente à regra desejada: "))
-        if regra == 3:
-            x, y = input("Insira a quantidade mínima e máxima de pais. Ex: 2 4. :").split()
-            regra_pai = ge.regras_pais_dict[regra][1](int(x), int(y))
-        else:
-            regra_pai = ge.regras_pais_dict[regra][1]
+    Para mais informações, consulte o arquivo README.md
+    """
+        n = "2"
+        while n == "2":
+            os.system("clear")
+            print(atencao)
+            print("""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
         
-        for chave, valor in ge.regras_prole_dict.items():
-            print(f"{chave}: {valor[0]}")
-        
-        regras = input("Insira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
-        proibidas = ge.combinacoes_proibidas.items()
+    --> Máscara de validação de campos de um formulário
+            """)
 
-        erro = False
-        for regra in proibidas:
-            controle = 0
-            for j in range(2):
-                controle += 1 if str(regra[j]) in regras else 0
-            if controle == 2:
-                erro = True
-                tupla = regra
+            regras_limites = ("2", "3", "4", "5")
+            lista_prole = []
+            lista_limites = []
+
+            print("""REGRA DE PAIS:
+
+Nº - REGRA""")
+
+            for chave, valor in ge.regras_pais_dict.items():
+                print(f"{chave}  - {valor[0]}")
+            
+            regra = input("\nInforme o número da regra desejada para prosseguir.\n"
+                                "Nº: ")
+            
+            if regra in ["1", "2", "3"]:
+                regra = int(regra)
+                regra_x = regra
+                if regra == 3:
+                    x, y = input("Insira a quantidade mínima e máxima de pais. Ex: 2 4. :").split()
+                    regra_pai = ge.regras_pais_dict[regra][1](int(x), int(y))
+                else:
+                    regra_pai = ge.regras_pais_dict[regra][1]
                 
-        if erro:
-            print("Erro: As regras escolhidas não podem ser usadas juntas. ", tupla)
-            exit()
+                os.system("clear")
+                print(atencao)
+                print(f"""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
         
-        for i in regras:
-            if i not in regras_limites:
-                lista_prole.append(ge.regras_prole[int(i)-1][1])
-            else:
-                n = int(input(f"Insira o <x> referente à regra '{ge.regras_prole_dict[int(i)][0]}': "))
-                lista_limites.append(ge.regras_prole[int(i)-1][1](n))
+    --> Máscara de validação de campos de um formulário
+    --> REGRA DE PAIS:
+        - {ge.regras_pais_dict[regra_x][0]}
+            """)
 
-        gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
-        for i in range(10):
-            print("Arranjo gerado: ", gerador())
+                print("""REGRA DE PROLE:
+
+Nº - REGRAS""")
+                for chave, valor in ge.regras_prole_dict.items():
+                    print(f"{chave}  - {valor[0]}")
+                
+                regras = input("\nInsira os números correspondentes às regras desejadas. Ex: 1 4 5. :").split()
+                proibidas = ge.combinacoes_proibidas.items()
+
+                erro = False
+                for regra in proibidas:
+                    controle = 0
+                    for j in range(2):
+                        controle += 1 if str(regra[j]) in regras else 0
+                    if controle == 2:
+                        erro = True
+                        tupla = regra
+                        
+                if erro:
+                    print("Erro: As regras escolhidas não podem ser usadas juntas. ", tupla)
+                    exit()
+                
+                for i in regras:
+                    if i not in regras_limites:
+                        lista_prole.append(ge.regras_prole[int(i)-1][1])
+                    else:
+                        n = int(input(f"Insira o <x> referente à regra '{ge.regras_prole_dict[int(i)][0]}': "))
+                        lista_limites.append(ge.regras_prole[int(i)-1][1](n))
+
+                gerador = ge.gerador_arranjo(*lista_prole, regra_pais=regra_pai, regra_limites=tuple(lista_limites))
+
+                n = "1"
+                while n == "1":
+                    os.system("clear")
+                    print(atencao)
+                    print(f"""
+            _________________________________________  
+            ((                                     ))
+            )) Trabalho sobre expressões regulares (( 
+            ((                                     ))
+            -----------------------------------------  
+        
+    --> Máscara de validação de campos de um formulário
+    --> REGRA DE PAIS:
+        - {ge.regras_pais_dict[regra_x][0]}
+    --> REGRA DE PROLE:""")
+                    for i in range(len(lista_prole)):
+                        print(f"        - {ge.regras_prole_dict[int(regras[i])][0]}")
+
+
+                    print("\nCadeia gerada: ", gerador())
+                    n = "5"
+                    while n not in ("1", "2", "3", "4"):
+                        n = input("""
+                OPÇÕES:
+                1 - Gerar outra cadeia com as mesmas regras
+                2 - Construir novo gerador
+                3 - Voltar ao menu principal
+                4 - Sair
+                
+                Nº: """)
+                        if n not in ("1", "2", "3", "4"):
+                            input("Opção inválida! Por favor, tente novamente. \nPressione ENTER para continuar.")
+
+            else:
+                input("Opção inválida! Por favor, tente novamente. \nPressione ENTER para continuar.")
+                input()
     else:
         print("\nPrograma encerrado!")
         n = "4"

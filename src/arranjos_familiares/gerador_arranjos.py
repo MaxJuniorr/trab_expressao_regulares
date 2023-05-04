@@ -24,7 +24,7 @@ def criar_nsais_platonico(x:int, y: int) -> str:
 
 def _iniciar_prole() -> str:
     '''Cria uma prole combinando "h" e "m" de tamanho n'''
-    n = random.randint(0,100)
+    n = random.randint(0,30)
     return ''.join(random.choices('hm', k=n))
 
 

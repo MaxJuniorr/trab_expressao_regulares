@@ -109,7 +109,7 @@ def validar_telefone() -> str:
 @verificador
 def validar_datetime() -> str:
     """
-    Verifica se o número de telefone está dentro das regras de
+    Verifica se o datetime está dentro das regras de
     produção.
 
     Regras
@@ -122,7 +122,7 @@ def validar_datetime() -> str:
 @verificador
 def validar_numero() -> str:
     """
-    Verifica se o número de telefone está dentro das regras de
+    Verifica se o número está dentro das regras de
     produção.
 
     Regras

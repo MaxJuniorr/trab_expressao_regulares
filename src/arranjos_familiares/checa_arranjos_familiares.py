@@ -39,8 +39,8 @@ def validar_arranjo_beta(arranjo: str) -> bool:
 
 
 def validar_arranjo_charlie(arranjo: str) -> bool:
-    """Casais heterossexuais mais velhos que os filhos, com a filha mais velha mulher e o filho
-    mais novo homem.
+    """Casais heterossexuais mais velhos que os filhos, com a 
+    filha mais velha mulher e o filho mais novo homem.
 
     Args:
         arranjo {str} -- um arranjo familiar
